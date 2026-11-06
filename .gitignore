@@ -1,0 +1,9 @@
+workbook.json
+portrait.jpg
+*.xlsx
+*.zip
+.env
+.env.*
+node_modules/
+*-character.json
+test-results/
