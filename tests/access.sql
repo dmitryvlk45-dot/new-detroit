@@ -12,7 +12,8 @@ values (current_setting('nd_test.owner')::uuid,'nd-test-owner@example.invalid',n
  (current_setting('nd_test.outsider')::uuid,'nd-test-outsider@example.invalid',now());
 set local role authenticated;
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('nd_test.owner'),'email','nd-test-owner@example.invalid','role','authenticated')::text,true);
-insert into public.characters(id,owner_id,data) values(current_setting('nd_test.card')::uuid,current_setting('nd_test.owner')::uuid,'{"test":true}');
+-- RETURNING mirrors the browser's Prefer: return=representation request.
+insert into public.characters(id,owner_id,data) values(current_setting('nd_test.card')::uuid,current_setting('nd_test.owner')::uuid,'{"test":true}') returning id;
 insert into public.character_access(character_id,email,role) values
  (current_setting('nd_test.card')::uuid,'nd-test-editor@example.invalid','editor'),
  (current_setting('nd_test.card')::uuid,'nd-test-viewer@example.invalid','viewer');

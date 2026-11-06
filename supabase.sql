@@ -42,7 +42,7 @@ grant execute on function nd_private.is_owner(uuid) to authenticated;
 grant execute on function nd_private.can_access(uuid,boolean) to authenticated;
 
 create policy characters_read on public.characters for select to authenticated
- using(nd_private.can_access(id,false));
+ using(owner_id=(select auth.uid()) or nd_private.can_access(id,false));
 create policy characters_create on public.characters for insert to authenticated
  with check(owner_id=(select auth.uid()));
 create policy characters_edit on public.characters for update to authenticated
