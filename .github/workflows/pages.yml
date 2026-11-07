@@ -23,6 +23,8 @@ jobs:
           node-version: '22'
       - run: node tests/engine.test.cjs
       - run: node --test tests/cloud.test.cjs
+      - name: Version browser assets
+        run: node scripts/version-assets.cjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
