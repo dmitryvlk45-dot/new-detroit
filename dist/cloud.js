@@ -15,15 +15,17 @@ window.ND_CLOUD=(()=>{
   return result;
  }
  function setSession(s){session={...s,expires_at:s.expires_at||Math.floor(Date.now()/1000)+(s.expires_in||3600)};sessionStorage.setItem('nd-session',JSON.stringify(session));}
+ const address=login=>login.trim().toLowerCase().includes('@')?login.trim().toLowerCase():login.trim().toLowerCase()+'@players.new-detroit.invalid';
  return {configured,user:()=>session?.user,
-  async login(email,password){setSession(await request('/auth/v1/token?grant_type=password',{method:'POST',body:{email,password},auth:false}));},
-  async signup(email,password){return request('/auth/v1/signup',{method:'POST',body:{email,password},auth:false});},
+  isMaster:()=>request('/rest/v1/rpc/is_master',{method:'POST',body:{}}),
+  async login(login,password){setSession(await request('/auth/v1/token?grant_type=password',{method:'POST',body:{email:address(login),password},auth:false}));},
+  async signup(login,password){return request('/functions/v1/register-player',{method:'POST',body:{login,password},auth:false});},
   async logout(){try{await request('/auth/v1/logout',{method:'POST'});}finally{session=null;sessionStorage.removeItem('nd-session');}},
   list:()=>request('/rest/v1/characters?select=id,owner_id,data,revision,updated_at&order=updated_at.desc'),
   async load(id){const r=await request('/rest/v1/characters?id=eq.'+encodeURIComponent(id)+'&select=*');if(!r?.[0])throw Error('Карточка не найдена или доступ ещё не выдан');return r[0];},
   async create(data){return (await request('/rest/v1/characters',{method:'POST',headers:{Prefer:'return=representation'},body:{owner_id:session.user.id,data}}))[0];},
   async save(id,data,revision){const r=await request('/rest/v1/characters?id=eq.'+encodeURIComponent(id)+'&revision=eq.'+revision,{method:'PATCH',headers:{Prefer:'return=representation'},body:{data,revision:revision+1}});if(!r?.length)throw Error('Карточка изменена в другом окне или нет прав. Экспортируй свою копию и открой актуальную через «Мои карточки».');return r[0];},
-  grant:(id,email,role)=>request('/rest/v1/character_access',{method:'POST',headers:{Prefer:'resolution=merge-duplicates'},body:{character_id:id,email:email.trim().toLowerCase(),role}}),
+  grant:(id,email,role)=>request('/rest/v1/character_access',{method:'POST',headers:{Prefer:'resolution=merge-duplicates'},body:{character_id:id,email:address(email),role}}),
   grants:id=>request('/rest/v1/character_access?character_id=eq.'+encodeURIComponent(id)+'&select=email,role'),
   revoke:(id,email)=>request('/rest/v1/character_access?character_id=eq.'+encodeURIComponent(id)+'&email=eq.'+encodeURIComponent(email),{method:'DELETE'})
  };

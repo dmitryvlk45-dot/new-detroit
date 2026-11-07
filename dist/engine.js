@@ -20,8 +20,13 @@
   }
   if(c.armor!==''&&!data.catalog.armor.some(x=>x.name===c.armor))throw Error('Неизвестная броня');
   for(const [k,fields] of [['inventory',['name','description']],['notes',['location','npc','text']]]){if(!Array.isArray(c[k])||c[k].length>500)throw Error('Слишком много записей');for(const row of c[k])for(const f of fields)if(typeof row[f]!=='string'||row[f].length>20000)throw Error('Некорректная запись');}
-  const result=clone(data.initial);for(const k of Object.keys(result))result[k]=clone(c[k]);return result;
+  if(c.photo!==undefined&&(typeof c.photo!=='string'||c.photo.length>500000||(c.photo!==''&&!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(c.photo))))throw Error('Некорректный портрет');
+  const result=clone(data.initial);for(const k of Object.keys(result))result[k]=clone(c[k]);
+  if(c.photo!==undefined)result.photo=c.photo;
+  return result;
  }
- root.ND_ENGINE={derive,validate,clone};
+ function blank(data){const c=clone(data.initial);for(const k of ['name','nickname','age','bio','armor'])c[k]='';c.photo='';c.attributes=[0,0,0,0];c.skills=Array(12).fill(0);c.hp=3;c.armorSpent=0;c.money=0;for(const k of ['weapons','programs','perks'])c[k]=c[k].map(()=>'');c.implants=c.implants.map(()=>({name:'',quality:''}));c.consumables=c.consumables.map(()=>({name:'',quantity:''}));c.inventory=[];c.notes=[];return c;}
+ function validateCreation(c,data){validate(c,data);const d=derive(c,data.catalog);if(!d.validAttributes)throw Error('Распредели характеристики: 2, 1, 1, 0');if(d.skillPoints!==0)throw Error(d.skillPoints<0?'Потрачено слишком много очков навыков':'Распредели все очки навыков');return c;}
+ root.ND_ENGINE={derive,validate,clone,blank,validateCreation};
  if(typeof module!=='undefined')module.exports=root.ND_ENGINE;
 })(typeof window!=='undefined'?window:globalThis);

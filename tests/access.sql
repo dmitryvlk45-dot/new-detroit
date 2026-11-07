@@ -10,6 +10,8 @@ values (current_setting('nd_test.owner')::uuid,'nd-test-owner@example.invalid',n
  (current_setting('nd_test.editor')::uuid,'nd-test-editor@example.invalid',now()),
  (current_setting('nd_test.viewer')::uuid,'nd-test-viewer@example.invalid',now()),
  (current_setting('nd_test.outsider')::uuid,'nd-test-outsider@example.invalid',now());
+-- This fixture also acts as the master for granting access.
+insert into nd_private.masters values(current_setting('nd_test.owner')::uuid);
 set local role authenticated;
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('nd_test.owner'),'email','nd-test-owner@example.invalid','role','authenticated')::text,true);
 -- RETURNING mirrors the browser's Prefer: return=representation request.
