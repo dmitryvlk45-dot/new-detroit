@@ -46,3 +46,9 @@ assert.throws(()=>E.validate({...blank,photo:'javascript:alert(1)'},D),/порт
 blank.photo='data:image/jpeg;base64,YWJj';assert.equal(E.validate(blank,D).photo,blank.photo);
 assert.ok(D.skills.some(x=>x.name==='Скрытность'));
 console.log('PASS: blank character, attribute distribution, skill budget, photo validation and persistence.');
+const entries=new Map([['nd-draft-user-one-card-id','photo'],['nd-draft-user-two-card-id','draft'],['nd-draft-user-other-card','keep'],['nd-session','keep'],['nd-creation-user','keep']]);
+const storage={get length(){return entries.size;},key:i=>[...entries.keys()][i],removeItem:k=>entries.delete(k)};
+E.clearCardCache(storage,'card-id');
+assert.equal(entries.has('nd-draft-user-one-card-id'),false);assert.equal(entries.has('nd-draft-user-two-card-id'),false);
+assert.equal(entries.get('nd-session'),'keep');assert.equal(entries.get('nd-draft-user-other-card'),'keep');assert.equal(entries.get('nd-creation-user'),'keep');
+console.log('PASS: deleted card cache removed without clearing sessions or other drafts.');
