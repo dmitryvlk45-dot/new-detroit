@@ -26,7 +26,7 @@
   return result;
  }
  function blank(data){const c=clone(data.initial);for(const k of ['name','nickname','age','bio','armor'])c[k]='';c.photo='';c.attributes=[0,0,0,0];c.skills=Array(12).fill(0);c.hp=3;c.armorSpent=0;c.money=0;for(const k of ['weapons','programs','perks'])c[k]=c[k].map(()=>'');c.implants=c.implants.map(()=>({name:'',quality:''}));c.consumables=c.consumables.map(()=>({name:'',quantity:''}));c.inventory=[];c.notes=[];return c;}
- function validateCreation(c,data){validate(c,data);const d=derive(c,data.catalog);if(!d.validAttributes)throw Error('Распредели характеристики: 2, 1, 1, 0');if(d.skillPoints!==0)throw Error(d.skillPoints<0?'Потрачено слишком много очков навыков':'Распредели все очки навыков');return c;}
+ function validateCreation(c,data){validate(c,data);if(c.skills.some(x=>x>2))throw Error('При создании персонажа навык не может быть выше 2');const d=derive(c,data.catalog);if(!d.validAttributes)throw Error('Распредели характеристики: 2, 1, 1, 0');if(d.skillPoints!==0)throw Error(d.skillPoints<0?'Потрачено слишком много очков навыков':'Распредели все очки навыков');return c;}
  function clearCardCache(storage,id){for(let i=storage.length-1;i>=0;i--){const key=storage.key(i);if(key?.startsWith('nd-draft-')&&key.endsWith('-'+id))storage.removeItem(key);}}
  root.ND_ENGINE={derive,validate,clone,blank,validateCreation,clearCardCache};
  if(typeof module!=='undefined')module.exports=root.ND_ENGINE;

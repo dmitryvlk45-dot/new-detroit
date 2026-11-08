@@ -40,6 +40,9 @@ assert.throws(()=>E.validateCreation(blank,D),/характеристики/);
 blank.attributes=[2,1,0,1];blank.hp=5;
 assert.throws(()=>E.validateCreation(blank,D),/все очки/);
 blank.skills[0]=3;blank.skills[4]=1;
+assert.throws(()=>E.validateCreation(blank,D),/выше 2/);
+assert.doesNotThrow(()=>E.validate(blank,D)); // Existing characters can still progress to rank 3.
+blank.skills[0]=2;blank.skills[4]=2;
 assert.doesNotThrow(()=>E.validateCreation(blank,D));
 blank.skills[1]=1;assert.throws(()=>E.validateCreation(blank,D),/слишком много/);
 assert.throws(()=>E.validate({...blank,photo:'javascript:alert(1)'},D),/портрет/);
