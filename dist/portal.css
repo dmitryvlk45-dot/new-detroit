@@ -55,3 +55,5 @@
 .kit-body{display:flex;flex-direction:column;flex:1;padding:24px}
 .kit-body h2{margin:0 0 12px}.kit-body>p:last-child{margin-top:auto;padding-top:16px;border-top:1px solid #303b38}
 @media(max-width:700px){.kit-grid{gap:24px}.kit-card .kit-select{min-height:56px;padding:16px 20px}.kit-body{padding:20px}}
+.kit-card .kit-portrait img[src="assets/shooter.jpg"]{object-fit:cover;object-position:50% 50%}
+
