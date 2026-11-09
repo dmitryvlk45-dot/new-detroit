@@ -21,7 +21,7 @@ window.ND_CLOUD=(()=>{
  }
  function setSession(s){session={...s,expires_at:s.expires_at||Math.floor(Date.now()/1000)+(s.expires_in||3600)};sessionStorage.setItem('nd-session',JSON.stringify(session));}
  const address=login=>login.trim().toLowerCase().includes('@')?login.trim().toLowerCase():login.trim().toLowerCase()+'@players.new-detroit.invalid';
- return {configured,user:()=>session?.user,
+ return {catalog:()=>request('/rest/v1/catalog_overrides?select=*'),saveCatalog:(category,name,data,revision)=>revision?request('/rest/v1/catalog_overrides?category=eq.'+encodeURIComponent(category)+'&name=eq.'+encodeURIComponent(name)+'&revision=eq.'+revision,{method:'PATCH',headers:{Prefer:'return=representation'},body:{data,revision:revision+1}}):request('/rest/v1/catalog_overrides',{method:'POST',headers:{Prefer:'return=representation'},body:{category,name,data}}),configured,user:()=>session?.user,
   isMaster:()=>request('/rest/v1/rpc/is_master',{method:'POST',body:{}}),
   async login(login,password){setSession(await request('/auth/v1/token?grant_type=password',{method:'POST',body:{email:address(login),password},auth:false}));},
   async signup(login,password){return request('/functions/v1/register-player',{method:'POST',body:{login,password},auth:false});},
