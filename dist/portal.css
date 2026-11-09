@@ -75,4 +75,4 @@ button{background:var(--wd-bg-elevated);color:var(--wd-text-primary);border-colo
 .portal-brand small{font-family:'Roboto Condensed','Segoe UI',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--wd-text-secondary);line-height:1.5}
 .brand>span{font-family:'Roboto Condensed','Segoe UI',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;line-height:1.5;color:var(--wd-text-secondary)}
 @media(max-width:700px){.portal-brand small{font-size:10px;letter-spacing:2px}.wd-full-logo{border-radius:0}}
-
+.connection-panel{max-width:720px;padding:28px;border:1px solid var(--wd-border);border-left:3px solid var(--wd-primary);background:linear-gradient(120deg,var(--wd-glow-primary),transparent 65%),var(--wd-bg-secondary)}.connection-panel p{color:var(--wd-text-secondary);margin:16px 0 24px;line-height:1.7}.connection-actions{display:flex;flex-wrap:wrap;gap:12px}.connection-actions button{min-height:50px}.connection-actions .yellow{padding-inline:24px}@media(max-width:700px){.connection-panel{padding:22px 18px}.connection-actions{flex-direction:column}.connection-actions button{width:100%}}
