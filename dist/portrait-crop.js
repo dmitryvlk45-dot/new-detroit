@@ -1,15 +1,15 @@
 /* Fixed portrait framing. Original files remain local until the crop is accepted. */
-window.ND_PORTRAIT={crop(file){return new Promise(async(resolve,reject)=>{
+window.ND_PORTRAIT={crop(file,options={}){return new Promise(async(resolve,reject)=>{
  let bitmap,dialog,finished=false;
  const finish=value=>{if(finished)return;finished=true;bitmap?.close();if(dialog){dialog.close();dialog.remove();}resolve(value);};
  try{
   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024)throw Error('Выбери JPG, PNG или WebP до 10 МБ');
   bitmap=await createImageBitmap(file);
-  const W=528,H=624,base=Math.max(W/bitmap.width,H/bitmap.height);
+  const landscape=options.kind==='campaign',W=landscape?1440:528,H=landscape?600:624,base=Math.max(W/bitmap.width,H/bitmap.height);
   let zoom=1,cx=bitmap.width/2,cy=bitmap.height/2;
   const pointers=new Map();let gesture=null;
-  dialog=document.createElement('dialog');dialog.className='crop-dialog';dialog.setAttribute('aria-labelledby','crop-title');
-  dialog.innerHTML=`<div class="dialog-heading"><h2 id="crop-title">Кадрировать портрет</h2><button type="button" id="crop-close" aria-label="Отменить кадрирование">×</button></div><p class="crop-hint">Перемещай фото внутри рамки. Масштаб — ползунком или двумя пальцами.</p><div class="crop-frame"><canvas id="crop-canvas" width="528" height="624" tabindex="0" aria-label="Область портрета. Перемещайте фото мышью, пальцем или клавишами со стрелками."></canvas><div class="crop-grid" aria-hidden="true"></div></div><label class="crop-zoom" for="crop-scale"><span>Масштаб</span><output id="crop-percent">100%</output></label><input id="crop-scale" type="range" min="1" max="4" step="0.01" value="1" aria-label="Масштаб портрета"><div class="crop-controls"><button type="button" id="crop-reset">Сбросить</button><button type="button" id="crop-cancel">Отмена</button><button type="button" id="crop-apply" class="yellow">Использовать</button></div><p class="crop-error" role="alert"></p>`;
+  dialog=document.createElement('dialog');dialog.className='crop-dialog'+(landscape?' campaign-crop-dialog':'');dialog.setAttribute('aria-labelledby','crop-title');
+  dialog.innerHTML=`<div class="dialog-heading"><h2 id="crop-title">${landscape?'Кадрировать обложку':'Кадрировать портрет'}</h2><button type="button" id="crop-close" aria-label="Отменить кадрирование">×</button></div><p class="crop-hint">Перемещай фото внутри рамки. Масштаб — ползунком или двумя пальцами.</p><div class="crop-frame"><canvas id="crop-canvas" width="${W}" height="${H}" tabindex="0" aria-label="Область изображения. Перемещайте фото мышью, пальцем или клавишами со стрелками."></canvas><div class="crop-grid" aria-hidden="true"></div></div><label class="crop-zoom" for="crop-scale"><span>Масштаб</span><output id="crop-percent">100%</output></label><input id="crop-scale" type="range" min="1" max="4" step="0.01" value="1" aria-label="Масштаб изображения"><div class="crop-controls"><button type="button" id="crop-reset">Сбросить</button><button type="button" id="crop-cancel">Отмена</button><button type="button" id="crop-apply" class="yellow">Использовать</button></div><p class="crop-error" role="alert"></p>`;
   document.body.append(dialog);dialog.showModal();
   const canvas=dialog.querySelector('canvas'),ctx=canvas.getContext('2d'),slider=dialog.querySelector('#crop-scale');
   function draw(){const scale=base*zoom,halfW=W/scale/2,halfH=H/scale/2;cx=Math.max(halfW,Math.min(bitmap.width-halfW,cx));cy=Math.max(halfH,Math.min(bitmap.height-halfH,cy));ctx.fillStyle='#111417';ctx.fillRect(0,0,W,H);ctx.drawImage(bitmap,W/2-cx*scale,H/2-cy*scale,bitmap.width*scale,bitmap.height*scale);slider.value=String(zoom);dialog.querySelector('#crop-percent').textContent=Math.round(zoom*100)+'%';}
@@ -23,7 +23,7 @@ window.ND_PORTRAIT={crop(file){return new Promise(async(resolve,reject)=>{
   dialog.querySelector('#crop-reset').onclick=()=>{zoom=1;cx=bitmap.width/2;cy=bitmap.height/2;draw();};
   dialog.querySelector('#crop-close').onclick=dialog.querySelector('#crop-cancel').onclick=()=>finish(null);
   dialog.oncancel=e=>{e.preventDefault();finish(null);};
-  dialog.querySelector('#crop-apply').onclick=()=>{try{let photo=canvas.toDataURL('image/jpeg',.86);if(photo.length>500000)photo=canvas.toDataURL('image/jpeg',.7);if(photo.length>500000)throw Error('Не удалось уменьшить фото. Выбери другой файл.');finish(photo);}catch(e){dialog.querySelector('.crop-error').textContent=e.message;}};
+  dialog.querySelector('#crop-apply').onclick=()=>{try{const limit=landscape?690000:500000;let photo=canvas.toDataURL('image/jpeg',.86);for(const quality of [.75,.62,.5]){if(photo.length<=limit)break;photo=canvas.toDataURL('image/jpeg',quality);}if(photo.length>limit)throw Error('Не удалось уменьшить фото. Выбери другой файл.');finish(photo);}catch(e){dialog.querySelector('.crop-error').textContent=e.message;}};
   draw();
  }catch(e){bitmap?.close();dialog?.remove();reject(e);}
 });}};
