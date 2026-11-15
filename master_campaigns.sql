@@ -1,0 +1,32 @@
+create table public.campaigns(id uuid primary key default gen_random_uuid(),name text not null check(length(name) between 1 and 200),description text not null default '' check(length(description)<=20000),cover text not null default '' check(length(cover)<=700000 and (cover='' or cover ~ '^data:image/(jpeg|png|webp);base64,')),revision int not null default 1,created_at timestamptz not null default now());
+create table public.campaign_characters(character_id uuid primary key references public.characters(id) on delete cascade,campaign_id uuid not null references public.campaigns(id) on delete cascade);
+create index on public.campaign_characters(campaign_id);
+create table public.campaign_sessions(id uuid primary key default gen_random_uuid(),campaign_id uuid not null references public.campaigns(id) on delete cascade,title text not null check(length(title) between 1 and 200),session_date date,notes text not null default '' check(length(notes)<=50000),revision int not null default 1,created_at timestamptz not null default now());
+create index on public.campaign_sessions(campaign_id);
+alter table public.campaigns enable row level security;
+alter table public.campaign_characters enable row level security;
+alter table public.campaign_sessions enable row level security;
+revoke all on public.campaigns,public.campaign_characters,public.campaign_sessions from anon;
+grant select,insert,update,delete on public.campaigns,public.campaign_characters,public.campaign_sessions to authenticated;
+create policy master_only on public.campaigns for all to authenticated using((select public.is_master())) with check((select public.is_master()));
+create policy master_only on public.campaign_characters for all to authenticated using((select public.is_master())) with check((select public.is_master()));
+create policy master_only on public.campaign_sessions for all to authenticated using((select public.is_master())) with check((select public.is_master()));
+create function public.master_accounts() returns jsonb language plpgsql security definer set search_path='' as $$ begin
+ if not public.is_master() then raise exception 'Master access required' using errcode='42501'; end if;
+ return (select coalesce(jsonb_agg(jsonb_build_object('id',u.id,'login',replace(u.email,'@players.new-detroit.invalid',''),'created_at',u.created_at,'last_sign_in_at',u.last_sign_in_at,'is_master',exists(select 1 from nd_private.masters m where m.user_id=u.id)) order by u.created_at),'[]'::jsonb) from auth.users u);
+end $$;
+create function public.master_delete_account(target_id uuid,confirmation text) returns jsonb language plpgsql security definer set search_path='' as $$ declare ids jsonb; email_address text; begin
+ if not public.is_master() then raise exception 'Master access required' using errcode='42501'; end if;
+ if target_id=auth.uid() or exists(select 1 from nd_private.masters where user_id=target_id) then raise exception 'Master account cannot be deleted'; end if;
+ select email into email_address from auth.users where id=target_id for update;
+ if not found then raise exception 'Account no longer exists'; end if;
+ if confirmation is distinct from replace(email_address,'@players.new-detroit.invalid','') then raise exception 'Confirmation does not match login'; end if;
+ select coalesce(jsonb_agg(id),'[]'::jsonb) into ids from public.characters where owner_id=target_id;
+ delete from public.character_access where email=lower(email_address);
+ delete from auth.sessions where user_id=target_id;
+ delete from auth.users where id=target_id;
+ return ids;
+end $$;
+revoke all on function public.master_accounts() from public,anon;
+revoke all on function public.master_delete_account(uuid,text) from public,anon;
+grant execute on function public.master_accounts(),public.master_delete_account(uuid,text) to authenticated;
