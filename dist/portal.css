@@ -198,3 +198,6 @@ dialog.auth-overlay::backdrop{background:rgba(11,11,16,.45);backdrop-filter:blur
 .portal-archive .archive-unknown{flex:auto;width:150px;height:170px}
 .portal-archive .archive-empty h2{font-size:29px}
 @media(max-width:700px){.portal-archive .portal-session-actions{margin-bottom:38px}.portal-archive .character-grid{grid-template-columns:minmax(0,1fr)}.portal-archive .archive-empty{padding:28px 24px}.portal-archive .archive-empty-copy{text-align:left}.portal-archive .archive-empty h2{font-size:26px}.portal-session-actions{gap:12px}.session-user{font-size:10px}.wizard-actions{grid-template-columns:auto minmax(0,1fr)}}
+
+/* Full-height screens after removing the shared footer. */
+.portal-landing .portal-main,.portal-roles .portal-main,.portal-auth .portal-main{min-height:100svh}
