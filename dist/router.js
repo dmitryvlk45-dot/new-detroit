@@ -2,7 +2,7 @@
 'use strict';
 window.ND_ROUTER=(()=>{
  let active='',index=0,busy=false,queued=null,profile='',loginReturn='',initial=true,renderCount=0,lastError=null;
- const views={showWelcome,showLibrary,showMasterHub,showCampaigns,showCampaign,showAccounts,showCatalogAdmin,startWizard,openCard};
+ const views={showWelcome,showLibrary,showMasterHub,showAllCharacters,showCampaigns,showCampaign,showAccounts,showCatalogAdmin,startWizard,openCard};
  const steps=['identity','attributes','skills','equipment'];
  const clean=path=>typeof path==='string'&&path.startsWith('/')&&!path.startsWith('//')?path:'/';
  function read(){
@@ -15,7 +15,7 @@ window.ND_ROUTER=(()=>{
   if(portalView==='wizard')return '/create/'+steps[wizardStep];
   if(portalView==='campaign')return '/master/campaigns/'+(portalCampaignId||'unassigned');
   if(portalView==='login')return (portalRegister?'/register':'/login')+(loginReturn?'?next='+encodeURIComponent(loginReturn):'');
-  return ({welcome:'/',library:'/characters',master:'/master',campaigns:'/master/campaigns',accounts:'/master/accounts',catalog:'/master/catalog'})[portalView]||active||'/';
+  return ({welcome:'/',library:'/characters',master:'/master','master-characters':'/master/characters',campaigns:'/master/campaigns',accounts:'/master/accounts',catalog:'/master/catalog'})[portalView]||active||'/';
  }
  function url(path){return location.pathname+'#'+path;}
  function stamp(path,replace=false){
@@ -49,11 +49,12 @@ window.ND_ROUTER=(()=>{
    loginReturn=clean(parsed.searchParams.get('next')||'/');if(loginReturn==='/')loginReturn='';
    if(C.user()){await display('/');return;}portalRole='player';showLogin(parts[0]==='register');return;
   }
-  if(!parts.length){loginReturn='';cloudRecord=null;await views.showWelcome();return;}
+  if(!parts.length){loginReturn='';cloudRecord=null;if(C.user()&&portalMaster){portalRole='master';await views.showMasterHub();}else await views.showWelcome();return;}
   if(parts[0]==='master'){
    if(!portalMaster){portalRole='player';await views.showLibrary();notify('Этот раздел доступен только мастеру.');return;}
    portalRole='master';cloudRecord=null;
    if(parts.length===1)return views.showMasterHub();
+   if(parts[1]==='characters'&&parts.length===2)return views.showAllCharacters();
    if(parts[1]==='accounts'&&parts.length===2)return views.showAccounts();
    if(parts[1]==='catalog'&&parts.length===2)return views.showCatalogAdmin();
    if(parts[1]==='campaigns'&&parts.length===2)return views.showCampaigns();
@@ -98,7 +99,8 @@ window.ND_ROUTER=(()=>{
  function onHistory(){const path=read();if(path===active)return;navigate(path,{pop:true,scrollY:history.state?.scrollY||0});}
  window.addEventListener('popstate',onHistory);
  window.addEventListener('hashchange',onHistory);
- showMasterHub=()=>navigate('/master');showCampaigns=()=>navigate('/master/campaigns');showCampaign=id=>navigate('/master/campaigns/'+(id||'unassigned'));showAccounts=()=>navigate('/master/accounts');showCatalogAdmin=()=>navigate('/master/catalog');showLibrary=()=>navigate(portalMaster&&portalRole==='master'?'/master':'/characters');startWizard=()=>navigate('/create');openCard=(id,selected='overview')=>navigate('/characters/'+id+'/'+selected);
- return {commit,navigate,read,reloadCard:id=>views.openCard(id,tab,true),reportError:e=>{lastError=e;},afterLogin:()=>{profile='';return navigate(loginReturn||'/',{replace:true});},back(){if(history.state?.wd&&history.state.wdIndex>0){history.back();return;}if(portalView==='campaign')return navigate('/master/campaigns');if(['campaigns','accounts','catalog'].includes(portalView))return navigate('/master');if(portalView==='editor'||portalView==='wizard')return navigate('/characters');return navigate('/');},start(){index=history.state?.wdIndex||0;return navigate(read(),{replace:true});}};
+ showMasterHub=()=>navigate('/master');showAllCharacters=()=>navigate('/master/characters');showCampaigns=()=>navigate('/master/campaigns');showCampaign=id=>navigate('/master/campaigns/'+(id||'unassigned'));showAccounts=()=>navigate('/master/accounts');showCatalogAdmin=()=>navigate('/master/catalog');showLibrary=()=>navigate(portalMaster&&portalRole==='master'?'/master':'/characters');startWizard=()=>navigate('/create');openCard=(id,selected='overview')=>navigate('/characters/'+id+'/'+selected);
+ return {commit,navigate,read,reloadCard:id=>views.openCard(id,tab,true),reportError:e=>{lastError=e;},afterLogin:()=>{profile='';return navigate(loginReturn||'/',{replace:true});},back(){if(history.state?.wd&&history.state.wdIndex>0){history.back();return;}if(portalView==='campaign')return navigate('/master/campaigns');if(['campaigns','accounts','catalog','master-characters'].includes(portalView))return navigate('/master');if(portalView==='editor'||portalView==='wizard')return navigate('/characters');return navigate('/');},start(){index=history.state?.wdIndex||0;return navigate(read(),{replace:true});}};
 })();
 window.ND_ROUTER.start();
+
