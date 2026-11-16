@@ -146,3 +146,13 @@ button{background:var(--wd-bg-elevated);color:var(--wd-text-primary);border-colo
 .portal-landing footer{background:rgba(11,11,16,.65);border-top:1px solid rgba(245,241,242,.08)}
 @media(max-width:700px){.portal-landing:before{background-image:linear-gradient(0deg,var(--wd-bg-primary),rgba(11,11,16,.4) 50%,rgba(11,11,16,.3)),url('assets/wd-city-mobile.webp'),radial-gradient(ellipse at 65% 35%,var(--wd-accent-dark),var(--wd-bg-primary));background-size:cover;background-position:center;background-repeat:no-repeat}.portal-landing .portal-main{padding:48px 22px 64px;min-height:calc(100svh - 150px)}.portal-landing .wd-full-logo{margin-bottom:40px}.portal-landing .portal-main>h1{font-size:clamp(36px,9vw,54px);letter-spacing:-1px}.portal-landing .portal-lead{margin-bottom:30px}.portal-landing footer{font-size:10px;gap:10px;flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){.portal-landing .connection-actions button{transition:none}.portal-landing .connection-actions button:hover{transform:none}}
+/* Natural typography for the two entrance screens. */
+.portal-landing,.portal-roles{font-family:Manrope,'Segoe UI',sans-serif}
+.portal-landing .portal-main>h1,.portal-roles .portal-main>h1,.portal-roles .role-card strong{font-family:Manrope,'Segoe UI',sans-serif;font-weight:600;letter-spacing:-.045em;text-transform:none}
+.portal-landing .portal-main>h1{font-size:clamp(36px,4.7vw,66px);line-height:1.14}
+.portal-roles .portal-main>h1{font-size:clamp(38px,4.7vw,66px);line-height:1.14}
+.portal-landing .portal-lead,.portal-roles .portal-lead{font-weight:400;letter-spacing:0}
+.portal-landing .portal-brand small,.portal-roles .portal-brand small{font-family:Manrope,'Segoe UI',sans-serif;font-weight:600;text-transform:none;letter-spacing:.03em;font-size:12px}
+.portal-landing .portal-top>.eyebrow,.portal-roles .portal-top>.eyebrow,.portal-roles .role-card .eyebrow{font-family:Manrope,'Segoe UI',sans-serif;text-transform:none;letter-spacing:.04em;font-weight:500}
+.portal-landing footer,.portal-roles footer{font-family:Manrope,'Segoe UI',sans-serif;font-size:10px;letter-spacing:.02em;text-transform:none}
+.portal-landing .connection-actions button,.portal-roles .role-arrow{font-weight:700;letter-spacing:0;text-transform:none}
