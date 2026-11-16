@@ -156,3 +156,10 @@ button{background:var(--wd-bg-elevated);color:var(--wd-text-primary);border-colo
 .portal-landing .portal-top>.eyebrow,.portal-roles .portal-top>.eyebrow,.portal-roles .role-card .eyebrow{font-family:Manrope,'Segoe UI',sans-serif;text-transform:none;letter-spacing:.04em;font-weight:500}
 .portal-landing footer,.portal-roles footer{font-family:Manrope,'Segoe UI',sans-serif;font-size:10px;letter-spacing:.02em;text-transform:none}
 .portal-landing .connection-actions button,.portal-roles .role-arrow{font-weight:700;letter-spacing:0;text-transform:none}
+/* Content-first portal without the repeated branding bar. */
+.portal-session-actions{display:flex;justify-content:flex-end;width:100%;margin:0 0 18px}
+.portal-session-actions button{font-size:12px;min-height:42px;background:rgba(23,23,31,.7)}
+.portal-landing .portal-main,.portal-roles .portal-main,.portal-auth .portal-main{min-height:calc(100svh - 66px)}
+.portal-landing .portal-lead:empty{display:none}
+.portal-landing .portal-main>h1{margin-bottom:36px}
+@media(max-width:700px){.portal-landing .portal-main,.portal-roles .portal-main,.portal-auth .portal-main{min-height:calc(100svh - 72px)}}
