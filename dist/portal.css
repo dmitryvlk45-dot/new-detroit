@@ -183,3 +183,18 @@ dialog.auth-overlay::backdrop{background:rgba(11,11,16,.45);backdrop-filter:blur
 @media(max-width:1100px){.portal-archive .character-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.portal-archive:before{background-image:linear-gradient(0deg,var(--wd-bg-primary),rgba(11,11,16,.65)),url('assets/wd-archive-mobile.webp'),radial-gradient(ellipse at 75% 20%,var(--wd-accent-dark),var(--wd-bg-primary));background-size:cover;background-position:center top;background-repeat:no-repeat}.portal-archive .portal-main{padding:22px 18px 38px}.portal-archive .portal-session-actions{top:22px;right:18px}.portal-archive .page-navigation{margin-bottom:32px;padding-right:72px;gap:7px}.archive-nav-mark{width:32px;height:32px;margin-right:0}.portal-archive .page-navigation button{flex:none;padding:9px 10px;font-size:11px}.portal-archive .portal-session-actions button{padding:9px 10px;min-height:42px;font-size:11px}.portal-archive .character-grid{grid-template-columns:minmax(0,1fr);gap:18px}.portal-archive .library-toolbar{gap:9px;margin-bottom:22px}.portal-archive .library-toolbar .yellow{flex:1}.archive-system-label{display:none}.archive-portrait{height:230px}.archive-card-body{padding:20px}.archive-empty{flex-direction:column;gap:24px;padding:30px 20px;text-align:center;min-height:0}.archive-unknown{flex:auto;width:150px;height:170px}.archive-empty h2{font-size:27px}.archive-empty button{width:100%}.archive-search{display:block;padding:14px}.archive-search>span{display:block;margin-bottom:10px}.archive-search input{max-width:none}.portal-archive .portal-lead{font-size:13px;margin-bottom:24px}.portal-archive footer{flex-wrap:wrap;gap:10px}}
 @media(prefers-reduced-motion:reduce){.portal-archive .character-entry,.archive-empty,.archive-unknown i{animation:none}.portal-archive .character-entry{transition:none}.archive-unknown i{top:50%;opacity:.3}}
+/* Let the archive's right-hand scenery remain visible. */
+.page-navigation:empty{display:none}
+.portal-lead:empty{display:none}
+.portal-session-actions{align-items:center;gap:18px}
+.session-user{display:inline-flex;align-items:center;gap:9px;font-size:11px;color:var(--wd-text-secondary)}
+.session-user i{width:5px;height:5px;background:var(--wd-accent-soft);box-shadow:0 0 8px var(--wd-glow-primary)}
+.session-user strong{color:var(--wd-text-primary);font-weight:600;font-size:13px;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.portal-archive .portal-session-actions{position:static;width:100%;margin:0 0 54px}
+.portal-archive .portal-main>h1{font-size:clamp(34px,4vw,54px);letter-spacing:.02em;margin:0 0 30px}
+.portal-archive .character-grid,.portal-archive #archive-search-slot{max-width:790px}
+.portal-archive .character-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.portal-archive .archive-empty{max-width:650px;flex-direction:column;align-items:flex-start;gap:26px;padding:34px;min-height:0}
+.portal-archive .archive-unknown{flex:auto;width:150px;height:170px}
+.portal-archive .archive-empty h2{font-size:29px}
+@media(max-width:700px){.portal-archive .portal-session-actions{margin-bottom:38px}.portal-archive .character-grid{grid-template-columns:minmax(0,1fr)}.portal-archive .archive-empty{padding:28px 24px}.portal-archive .archive-empty-copy{text-align:left}.portal-archive .archive-empty h2{font-size:26px}.portal-session-actions{gap:12px}.session-user{font-size:10px}.wizard-actions{grid-template-columns:auto minmax(0,1fr)}}
