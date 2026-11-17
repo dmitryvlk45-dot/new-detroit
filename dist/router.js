@@ -63,7 +63,7 @@ window.ND_ROUTER=(()=>{
   if(parts[0]==='characters'){
    if(parts.length===1){portalRole='player';return views.showLibrary();}
    if(parts.length===2||parts.length===3){
-    const selected=parts[2]||'overview';if(!tabs.some(t=>t[0]===selected))throw Error('Такого раздела карточки нет.');
+    const selected=parts[2]||'overview';if(!tabs.some(t=>t[0]===selected)&&selected!=='reference')throw Error('Такого раздела карточки нет.');
     if(parts[1]==='local'){cloudRecord=null;card=E.blank(D);try{const local=localStorage.getItem('nd-local-v1');if(local)card=E.validate(JSON.parse(local),D);}catch{}portalView='editor';canEdit=true;tab=selected;render();return;}
     if(cloudRecord?.id===parts[1]&&portalView==='editor'){tab=selected;render();return;}
     await views.openCard(parts[1],selected);return;
@@ -103,4 +103,3 @@ window.ND_ROUTER=(()=>{
  return {commit,navigate,read,reloadCard:id=>views.openCard(id,tab,true),reportError:e=>{lastError=e;},afterLogin:()=>{profile='';return navigate(loginReturn||'/',{replace:true});},back(){if(history.state?.wd&&history.state.wdIndex>0){history.back();return;}if(portalView==='campaign')return navigate('/master/campaigns');if(['campaigns','accounts','catalog','master-characters'].includes(portalView))return navigate('/master');if(portalView==='editor'||portalView==='wizard')return navigate('/characters');return navigate('/');},start(){index=history.state?.wdIndex||0;return navigate(read(),{replace:true});}};
 })();
 window.ND_ROUTER.start();
-

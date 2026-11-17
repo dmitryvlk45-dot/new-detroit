@@ -72,6 +72,7 @@ function validateEffect(e){
 function validateItem(item){
  if(!item||typeof item!=='object')throw Error('Неверная запись');if(!classes.some(x=>x.id===item.classId))throw Error('Выбери класс');
  for(const k of ['name','displayName','subtype','manufacturer','description','rulesText'])if(item[k]!=null&&(typeof item[k]!=='string'||item[k].length>20000))throw Error('Неверное поле '+k);
+ if(item.icon!=null&&item.icon!==''&&(typeof item.icon!=='string'||item.icon.length>60000||!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(item.icon)))throw Error('Неверная иконка предмета');
  if(!item.catalogId||typeof item.catalogId!=='string'||item.catalogId.length>1500)throw Error('Неверный ID каталога');
  if(item.economy?.price!=null&&(!Number.isSafeInteger(item.economy.price)||item.economy.price<0))throw Error('Цена должна быть целым неотрицательным числом');
  if(!Array.isArray(item.effects)||item.effects.length>100)throw Error('Неверные эффекты');item.effects.forEach(validateEffect);
@@ -124,4 +125,3 @@ function removeEquipment(c,catalog,id){const out=normalizeCharacter(c,catalog);i
 root.ND_CATALOG_V2={classes,attributeIds,skillIds,locations,isConsumable,stateFor,syncLegacyFromEquipment,validateEquipmentState,addEquipment,setEquipmentState,consumeEquipment,removeEquipment,catalogId,stableId:catalogId,normalizeItem,normalizeCatalog,validateItem,validateEffect,all,resolve,normalizeCharacter,migrateLegacyCharacter:normalizeCharacter,validateInstances,calculateCharacterStats,calculateCheckModifier,legacyInstances};
 if(typeof module!=='undefined')module.exports=root.ND_CATALOG_V2;
 })(typeof window!=='undefined'?window:globalThis);
-
