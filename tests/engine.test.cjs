@@ -25,7 +25,7 @@ assert.deepEqual(E.validate(c,D),{...c,experience:0});
 assert.throws(()=>E.validate({...c,skills:[99]},D));
 assert.throws(()=>E.validate({...c,hp:100},D));
 assert.throws(()=>E.validate({...c,money:-1},D));
-assert.throws(()=>E.validate({...c,weapons:['unknown','']},D));
+assert.deepEqual(E.validate({...c,weapons:['unknown','']},D).weapons,['unknown','']); // unresolved historic items survive import
 assert.throws(()=>E.validate({...c,notes:[{location:null,npc:'',text:''}]},D));
 assert.equal(D.catalog.weapons.length,14);
 assert.equal(D.catalog.implants.length,18);
@@ -63,3 +63,4 @@ assert.equal(E.canSpendExperience({experience:2}),false);
 assert.equal(E.canSpendExperience({experience:3}),true);
 assert.equal(E.canSpendExperience({}),false);
 console.log('PASS: legacy/default XP, persisted XP, invalid XP and spending threshold.');
+
