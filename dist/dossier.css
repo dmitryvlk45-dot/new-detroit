@@ -19,6 +19,7 @@
 .character-sheet .profile textarea{height:64px;min-height:64px}.character-sheet .profile button{margin-top:12px}
 .character-sheet .metrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:28px}
 .character-sheet .metric{padding:18px;min-width:0;border-top:2px solid var(--wd-border)}.character-sheet .health{border-top-color:var(--wd-primary)}
+.character-sheet .pips{height:auto;min-height:44px;flex-wrap:wrap}.character-sheet .pip{flex:1 0 30px;max-width:80px}
 .character-sheet .overview-grid{grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:24px}.character-sheet .side-col{display:block}
 .character-sheet .skill{flex-wrap:wrap}.character-sheet .skill .v2-stat-bonus{flex-basis:100%}
 .character-sheet .v2-owned-item{padding:18px}.character-sheet .panel-head{flex-wrap:wrap}.character-sheet .section-actions,.sheet-section-actions{display:flex;gap:12px;margin-bottom:18px}
