@@ -1,5 +1,5 @@
 const fs=require('fs'),os=require('os'),path=require('path');
-for(const file of ['app.js','dossier-v3.js','sheet-v2.js','shop-ui.js','catalog-v2.js','router.js','portrait-crop.js'])new Function(fs.readFileSync('dist/'+file,'utf8'));
+for(const file of ['app.js','dossier-v3.js','inventory-v3.js','sheet-v2.js','shop-ui.js','catalog-v2.js','router.js','portrait-crop.js'])new Function(fs.readFileSync('dist/'+file,'utf8'));
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'wd-dossier-'));
 fs.cpSync('dist',tmp,{recursive:true});
 console.log('Build assets:',require('./version-assets.cjs').versionAssets(tmp));
