@@ -44,7 +44,7 @@ document.addEventListener('change',async event=>{const input=event.target;if(!in
 
 const catalogDefaultIcons=Object.freeze({melee_weapon:'melee.webp',ranged_weapon:'ranged.webp',clothing_armor:'armor.webp',implant:'implant.webp',neurodeck:'neurodeck.webp',worm:'worm.webp',heavy_demon:'demon.webp',throwable:'grenade.webp',medicine:'medicine.webp',stimulant:'stimulant.webp',gadget:'gadget.webp',vehicle:'vehicle.webp',perk:'perk.svg'});
 function hasCustomCatalogIcon(item){return typeof item?.icon==='string'&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(item.icon)&&item.icon.length<=60000;}
-function defaultCatalogIcon(item,{manual=false}={}){return 'assets/item-icons/'+(manual?'manual.webp':catalogDefaultIcons[item?.classId]||'other.webp');}
+function defaultCatalogIcon(item,{manual=false}={}){return 'assets/item-icons/'+(manual?'manual.webp':(typeof item?.classId==='string'&&Object.hasOwn(catalogDefaultIcons,item.classId)?catalogDefaultIcons[item.classId]:'other.webp'));}
 function catalogIconSource(item,options={}){return !options.manual&&hasCustomCatalogIcon(item)?item.icon:defaultCatalogIcon(item,options);}
 function catalogIcon(item,cls='catalog-item-icon',options={}){return `<img class="${esc(cls)}" src="${esc(catalogIconSource(item,options))}" data-item-icon data-item-default="${defaultCatalogIcon(item,options)}" alt="" loading="lazy" decoding="async">`;}
 // Error events do not bubble. A failed custom image falls back to its class,
