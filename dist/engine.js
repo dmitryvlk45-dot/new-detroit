@@ -18,6 +18,7 @@
   }
   if(typeof c.armor!=='string'||c.armor.length>20000)throw Error('Некорректная броня');
   if(c.equipmentVersion!==undefined){V.normalizeCharacter(c,data.catalog);}
+  if(c.resourceAdjustments!==undefined){const a=c.resourceAdjustments;if(!a||typeof a!=='object'||Array.isArray(a)||Object.keys(a).some(k=>!['hp','armor'].includes(k))||Object.values(a).some(v=>!Number.isSafeInteger(v)||Math.abs(v)>10000))throw Error('Некорректная поправка максимума ресурса');}
   const maximum=derive(c,data.catalog).maxHP;if(c.hp>maximum&&c.equipmentVersion!==2)throw Error('Некорректное здоровье');
   for(const [k,fields] of [['inventory',['name','description']],['notes',['location','npc','text']]]){if(!Array.isArray(c[k])||c[k].length>500)throw Error('Слишком много записей');for(const row of c[k])for(const f of fields)if(typeof row[f]!=='string'||row[f].length>20000)throw Error('Некорректная запись');}
   for(const row of c.inventory)if(row.quantity!==undefined&&(!Number.isSafeInteger(row.quantity)||row.quantity<1))throw Error('Количество ручного предмета должно быть целым числом от 1');
@@ -25,6 +26,7 @@
   if(c.experience!==undefined&&(!Number.isSafeInteger(c.experience)||c.experience<0))throw Error('Опыт должен быть целым неотрицательным числом');
   const result=clone(data.initial);for(const k of Object.keys(result))result[k]=clone(c[k]);
   result.experience=c.experience??0;
+  if(c.resourceAdjustments!==undefined)result.resourceAdjustments=clone(c.resourceAdjustments);
   if(c.photo!==undefined)result.photo=c.photo;
   if(c.equipmentVersion!==undefined){result.equipmentVersion=c.equipmentVersion;result.equipmentItems=V.validateInstances(c.equipmentItems);result.hp=Math.min(result.hp,maximum);}
   return result;
