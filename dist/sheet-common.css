@@ -1,0 +1,7 @@
+/* Shared section title and sync styling, independent of the active tab. */
+.character-sheet .sheet-section-title{font:700 36px/1.2 'Roboto Condensed','Segoe UI',sans-serif;letter-spacing:-.02em;margin:0;color:var(--wd-text-primary)}
+.character-sheet .sheet-section-title:before{content:'';display:inline-block;width:10px;height:32px;margin:0 20px 0 2px;vertical-align:-3px;transform:skew(-18deg);background:var(--wd-primary);font-style:normal;letter-spacing:normal}
+.character-sheet .sheet-main>.heading:has(.sheet-section-title){margin:0 0 22px;display:flex;align-items:baseline;text-align:left}
+.character-sheet .sheet-sync .save-indicator{font:400 12px/1.4 'Roboto Condensed','Segoe UI',sans-serif;color:var(--wd-text-secondary);letter-spacing:normal}
+.character-sheet .sheet-sync .save-indicator i{background:var(--wd-primary)}
+@media(max-width:767px){.character-sheet .sheet-section-title{font-size:30px}.character-sheet .sheet-section-title:before{width:8px;height:26px;margin-right:17px;vertical-align:-2px}.character-sheet .sheet-main>.heading:has(.sheet-section-title){margin-bottom:16px}.character-sheet .sheet-sync .save-indicator{font-size:11px}}
