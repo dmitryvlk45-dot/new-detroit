@@ -1,6 +1,7 @@
 (function(root){
  'use strict';
  const clone=x=>JSON.parse(JSON.stringify(x));
+ const J=root.ND_JOURNAL_MODEL||(typeof require==='function'?require('./journal-model.js'):null);
  const V=root.ND_CATALOG_V2||(typeof require==='function'?require('./catalog-v2.js'):null);
  function derive(c,catalog){
   const stats=V.calculateCharacterStats(c,catalog),{maxHP,armor,currentArmor}=stats,{used,capacity}=stats.chrome;
@@ -20,11 +21,12 @@
   if(c.equipmentVersion!==undefined){V.normalizeCharacter(c,data.catalog);}
   if(c.resourceAdjustments!==undefined){const a=c.resourceAdjustments;if(!a||typeof a!=='object'||Array.isArray(a)||Object.keys(a).some(k=>!['hp','armor'].includes(k))||Object.values(a).some(v=>!Number.isSafeInteger(v)||Math.abs(v)>10000))throw Error('Некорректная поправка максимума ресурса');}
   const maximum=derive(c,data.catalog).maxHP;if(c.hp>maximum&&c.equipmentVersion!==2)throw Error('Некорректное здоровье');
-  for(const [k,fields] of [['inventory',['name','description']],['notes',['location','npc','text']]]){if(!Array.isArray(c[k])||c[k].length>500)throw Error('Слишком много записей');for(const row of c[k])for(const f of fields)if(typeof row[f]!=='string'||row[f].length>20000)throw Error('Некорректная запись');}
+  for(const [k,fields] of [['inventory',['name','description']]]){if(!Array.isArray(c[k])||c[k].length>500)throw Error('Слишком много записей');for(const row of c[k])for(const f of fields)if(typeof row[f]!=='string'||row[f].length>20000)throw Error('Некорректная запись');}
   for(const row of c.inventory)if(row.quantity!==undefined&&(!Number.isSafeInteger(row.quantity)||row.quantity<1))throw Error('Количество ручного предмета должно быть целым числом от 1');
   if(c.photo!==undefined&&(typeof c.photo!=='string'||c.photo.length>500000||(c.photo!==''&&!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(c.photo))))throw Error('Некорректный портрет');
   if(c.experience!==undefined&&(!Number.isSafeInteger(c.experience)||c.experience<0))throw Error('Опыт должен быть целым неотрицательным числом');
   const result=clone(data.initial);for(const k of Object.keys(result))result[k]=clone(c[k]);
+  result.notes=J.normalize(c.notes);
   result.experience=c.experience??0;
   if(c.resourceAdjustments!==undefined)result.resourceAdjustments=clone(c.resourceAdjustments);
   if(c.photo!==undefined)result.photo=c.photo;
