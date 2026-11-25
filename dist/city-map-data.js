@@ -5,5 +5,6 @@
  const position=(latlng)=>({x:Math.min(1,Math.max(0,latlng.lng/6636)),y:Math.min(1,Math.max(0,1-latlng.lat/3792))});
  const latlng=p=>[(1-p.y)*3792,p.x*6636];
  const image=p=>{if(typeof p!=='string')return null;if(p.length<=700000&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(p))return p;try{const u=new URL(p);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null;}catch{return null;}};
- const api={categories,marker,search,position,latlng,image,bounds:[[0,0],[3792,6636]]};root.ND_MAP_DATA=api;if(typeof module!=='undefined')module.exports=api;
+ const locationsAt=(locations,p)=>p?locations.filter(l=>l.position&&Math.abs(l.position.x-p.x)<=1e-7&&Math.abs(l.position.y-p.y)<=1e-7):[];
+ const api={categories,marker,search,position,latlng,image,locationsAt,bounds:[[0,0],[3792,6636]]};root.ND_MAP_DATA=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
