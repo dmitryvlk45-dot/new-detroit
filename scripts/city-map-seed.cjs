@@ -12,8 +12,12 @@ const districts=[
 ['eight-mile','Восьмая миля','#ffe23b','Северные окраины',[[[242,196],[275,183],[311,162],[345,137],[353,111],[352,83],[317,83],[314,109],[290,131],[268,150],[246,167]],[[372,83],[414,85],[454,76],[492,70],[527,80],[561,65],[588,60],[601,48],[627,54],[675,55],[720,55],[748,45],[751,38],[779,44],[796,65],[838,68],[859,75],[881,91],[909,88],[929,70],[954,75],[979,80],[1020,89],[1040,72],[1080,78],[1120,78],[1157,83],[1174,73],[1206,50],[1247,58],[1254,77],[1254,122],[1273,146],[1310,148],[1359,150],[1361,197],[1325,195],[1282,179],[1251,173],[1221,164],[1192,164],[1160,155],[1152,138],[1135,140],[1104,162],[1080,179],[1080,199],[1042,203],[1020,217],[982,221],[974,205],[936,205],[912,204],[888,219],[859,219],[850,198],[814,179],[771,196],[751,178],[702,175],[656,176],[625,194],[603,200],[579,177],[547,159],[516,146],[478,140],[432,141],[393,144],[375,131]]]],
 ['belle-isle','Бель-Айл','#98ff37','Островная территория',[[[1065,633],[1095,612],[1120,598],[1158,574],[1194,552],[1228,528],[1262,511],[1304,491],[1328,477],[1355,468],[1390,473],[1420,470],[1458,475],[1470,483],[1467,498],[1452,507],[1429,517],[1417,539],[1406,563],[1384,574],[1368,591],[1338,605],[1301,618],[1263,626],[1223,631],[1186,640],[1144,646],[1100,651],[1070,647]]]]
 ];
-// One district (Honeycombs) has multiple geographic components, kept together.
-const normalized=districts.map(([id,name,color,activity,polys])=>({id,name,color,activity,short_description:activity+' Нового Детройта.',description:'',polygons:polys.map(polygon),contour_status:'draft'}));
+// The two Honeycombs areas have independent selections and zoom bounds.
+// Keep the original id for the western area to preserve existing references.
+const normalized=districts.flatMap(([id,name,color,activity,polys])=>{
+ const make=(id,name,polys)=>({id,name,color,activity,short_description:activity+' Нового Детройта.',description:'',polygons:polys.map(polygon),contour_status:'draft'});
+ return id==='honeycombs'?[make(id,'Западные Соты',[polys[0]]),make('honeycombs-east','Восточные Соты',[polys[1]])]:[make(id,name,polys)];
+});
 const quote=s=>"'"+String(s).replaceAll("'","''")+"'";
 let sql=normalized.map(d=>`insert into public.map_districts(id,name,color,activity,short_description,polygons,contour_status) values(${quote(d.id)},${quote(d.name)},${quote(d.color)},${quote(d.activity)},${quote(d.short_description)},${quote(JSON.stringify(d.polygons))}::jsonb,'draft') on conflict(id) do nothing;`).join('\n');
 sql+='\ninsert into public.map_settings(id,data) values(\'global\','+quote(JSON.stringify(R.defaults))+'::jsonb) on conflict(id) do nothing;\n';
