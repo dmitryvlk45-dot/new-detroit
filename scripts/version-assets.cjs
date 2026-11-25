@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {createHash}=require('node:crypto');
 function versionAssets(root){
+ require('./materialize-map.cjs').materializeMap(root);
  const index=path.join(root,'index.html');
  let count=0;
  const html=fs.readFileSync(index,'utf8').replace(/\b(src|href)="([\w.-]+\.(?:js|css))"/g,(match,attr,name)=>{

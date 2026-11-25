@@ -15,7 +15,7 @@ window.ND_ROUTER=(()=>{
   if(portalView==='wizard')return '/create/'+steps[wizardStep];
   if(portalView==='campaign')return '/master/campaigns/'+(portalCampaignId||'unassigned');
   if(portalView==='login')return (portalRegister?'/register':'/login')+(loginReturn?'?next='+encodeURIComponent(loginReturn):'');
-  return ({welcome:'/',library:'/characters',master:'/master','master-characters':'/master/characters',campaigns:'/master/campaigns',accounts:'/master/accounts',catalog:'/master/catalog'})[portalView]||active||'/';
+  return ({welcome:'/',library:'/characters',master:'/master','master-characters':'/master/characters',campaigns:'/master/campaigns',accounts:'/master/accounts',catalog:'/master/catalog','master-map':'/master/map'})[portalView]||active||'/';
  }
  function url(path){return location.pathname+'#'+path;}
  function stamp(path,replace=false){
@@ -30,6 +30,7 @@ window.ND_ROUTER=(()=>{
   if(!busy)stamp(path,initial);
  }
  async function leave(){
+  if(window.ND_MASTER_MAP?.hasDraft())throw Error('Сначала сохрани или отмени изменения карты.');
   if(portalView==='wizard'&&wizard)rememberWizard();
   if(portalView==='editor'){
    await save();
@@ -57,6 +58,7 @@ window.ND_ROUTER=(()=>{
    if(parts[1]==='characters'&&parts.length===2)return views.showAllCharacters();
    if(parts[1]==='accounts'&&parts.length===2)return views.showAccounts();
    if(parts[1]==='catalog'&&parts.length===2)return views.showCatalogAdmin();
+   if(parts[1]==='map'&&parts.length===2)return window.ND_MASTER_MAP.show();
    if(parts[1]==='campaigns'&&parts.length===2)return views.showCampaigns();
    if(parts[1]==='campaigns'&&parts.length===3)return views.showCampaign(parts[2]==='unassigned'?null:parts[2]);
   }

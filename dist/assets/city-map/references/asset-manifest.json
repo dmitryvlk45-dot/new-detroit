@@ -1,0 +1,534 @@
+{
+  "base": {
+    "width": 6636,
+    "height": 3792,
+    "unchanged": true
+  },
+  "assets": [
+    {
+      "source": "upscaled.webp",
+      "path": "assets/city-map/base/new-detroit.webp",
+      "crop": null,
+      "size": [
+        6636,
+        3792
+      ],
+      "sha256": "805fbbd34367dc5227b97526d5563ab526c5c6165a5c6f607d99a167a40a2802"
+    },
+    {
+      "source": "district_info_panel.png",
+      "path": "assets/city-map/panels/district_info_panel.webp",
+      "crop": null,
+      "size": [
+        700,
+        875
+      ],
+      "sha256": "713aa82d1d4253d1c6ffc13c4db949fdd0a3f1747e5266d738fa4c3d13fae0b9"
+    },
+    {
+      "source": "location_info_panel.png",
+      "path": "assets/city-map/panels/location_info_panel.webp",
+      "crop": null,
+      "size": [
+        700,
+        875
+      ],
+      "sha256": "7e21661d75044835f4e636ac36ee3291ee339fcb2903714051d2dc5858f24934"
+    },
+    {
+      "source": "Киберпанковый шаблон без изображения.png",
+      "path": "assets/city-map/placeholders/location-placeholder.webp",
+      "crop": null,
+      "size": [
+        700,
+        467
+      ],
+      "sha256": "b63c77fd195a5b4100745b36cdf40848e8a14b5b93a50e41606262cc325c9a5d"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_15-1.png",
+      "path": "assets/city-map/markers/categories/shop.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "df7e0f0b74b17a3824fb58c3cc5452d6d53a1928393cf3c9ff0f8f226a2280ad"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_17-2.png",
+      "path": "assets/city-map/markers/categories/special.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "9bf9416cbfeb4c261615e781ac70fbefed0ae79cb8d4656f70e66ec4e4cba465"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_19-3.png",
+      "path": "assets/city-map/markers/categories/danger.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "2fb590e5b4c6ceff4b9a0ff106f6bd34c393c1e4d7ea5d5ec1e54f9d8d72d73d"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_20-4.png",
+      "path": "assets/city-map/markers/categories/contact.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "1bc3b4bdd7bf38d66bedb2911b19c22b1668713bbdf3e72a59392472aaec7c97"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_22-5.png",
+      "path": "assets/city-map/markers/categories/corporation.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "63d07cab41bfe6fe8cbefc8eda54e378c4a7db30f9cf1bd692a44364ca11a4cf"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_24-6.png",
+      "path": "assets/city-map/markers/categories/club.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "99b5b326681caf69e5f4ac4d5538326c3f47b0ed920d82a44b7fdeb2a48865b8"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_25-7.png",
+      "path": "assets/city-map/markers/categories/clinic.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "ea09e6532d5d39e374836c549ea8be090ef368b6c42695bd30f85b9d7b3180f0"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_27-8.png",
+      "path": "assets/city-map/markers/categories/industrial.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "f07d59099b3c3f3683748442eb7e26bba1e6af90a6768801312dcafccd719f43"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_28-9.png",
+      "path": "assets/city-map/markers/categories/warehouse.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "6f887b7838c0d56c9f160d066f7cd7eb81d4a9380e690ee1c076391364e8b0a1"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 21_11_30-10.png",
+      "path": "assets/city-map/markers/categories/shelter.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "ea0eb278b412041bc307a3627cfa578e70909d6e551bb5990530948813e8e800"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/categories/info.png",
+      "crop": [
+        0,
+        313,
+        313,
+        627
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "0ef584e039efef90c32da312bb60e52accbc7090d53b08e820b8726778c3d139"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/categories/transport.png",
+      "crop": [
+        940,
+        627,
+        1254,
+        940
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "b7ab12191be47a182d822fda1a4d4010426b5e2722fa5eb8d0bd865bab8e2f5f"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/categories/quest.png",
+      "crop": [
+        0,
+        940,
+        313,
+        1254
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "9cdc565ae3da387063549c95e5fe07be19a91b7d026041cd6841a8d471c6fbb9"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/categories/neutral.png",
+      "crop": [
+        0,
+        313,
+        313,
+        627
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "0ef584e039efef90c32da312bb60e52accbc7090d53b08e820b8726778c3d139"
+    },
+    {
+      "source": "marker-states\\marker_hidden_locked_128.png",
+      "path": "assets/city-map/markers/states/marker_hidden_locked.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "eac4f550d8053266b14aa61e26f8546ce8214796252ff3f40c514212dfe86a53"
+    },
+    {
+      "source": "marker-states\\marker_hover_128.png",
+      "path": "assets/city-map/markers/states/marker_hover.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "75e91f0d2bf70beb46909e96b4e7728af10f7deba6505078e0750913fa101807"
+    },
+    {
+      "source": "marker-states\\marker_normal_128.png",
+      "path": "assets/city-map/markers/states/marker_normal.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "557ad38dacf35b180a517d7c567ed936809b5adb465a8eb970553775cbf3970f"
+    },
+    {
+      "source": "marker-states\\marker_route_active_128.png",
+      "path": "assets/city-map/markers/states/marker_route_active.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "277af1e09e8b0c16ada66703d5a004bc957bdb125ede2341510d89f983c41e86"
+    },
+    {
+      "source": "marker-states\\marker_selected_128.png",
+      "path": "assets/city-map/markers/states/marker_selected.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "75ce622e53a73936b627b01cfc446ad516b34adefac49a4b87b1861dd1cbd9c8"
+    },
+    {
+      "source": "Маркеры местоположения\\Изображение ChatGPT 24 нояб. 2026 г., 21_42_15-1.png",
+      "path": "assets/city-map/markers/party/normal.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "f737d68035f9efae784b367af785b35c5d61c62c3458c4567544f3ddc0ac3f3b"
+    },
+    {
+      "source": "Маркеры местоположения\\Изображение ChatGPT 24 нояб. 2026 г., 21_42_17-2.png",
+      "path": "assets/city-map/markers/party/hover.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "cfb6a369fd966ac33e5280c269af1625a3c701b83b1e8207b86844d21941add0"
+    },
+    {
+      "source": "Маркеры местоположения\\Изображение ChatGPT 24 нояб. 2026 г., 21_42_18-3.png",
+      "path": "assets/city-map/markers/party/selected.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "1c956cb9124d6fb39a01f8f4a023c87f9b249a4174db690d5d4a77a132c79f96"
+    },
+    {
+      "source": "Маркеры местоположения\\Изображение ChatGPT 24 нояб. 2026 г., 21_42_20-4.png",
+      "path": "assets/city-map/markers/party/start.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "26e4037e10df49d7576e84d1f69abe0827e37384763dab5d1a8b6351cdd00241"
+    },
+    {
+      "source": "Маркеры местоположения\\Изображение ChatGPT 24 нояб. 2026 г., 21_42_21-5.png",
+      "path": "assets/city-map/markers/party/gps.png",
+      "crop": null,
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "2189ccecaafaed0acbf9ea1e01172ee63eaa5746fe8aa6e05c7981ca1a808a87"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/routes/start.png",
+      "crop": [
+        0,
+        0,
+        313,
+        313
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "2c7f403922895c19645566a02a89aae9b8f3412f054f8ab1d155157efbb12f67"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/routes/end.png",
+      "crop": [
+        0,
+        940,
+        313,
+        1254
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "76caa7783486a7094679982ff2c63ac7fb82114d1dd9ae15e4abf1a914b0d205"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_14_58-1.png",
+      "path": "assets/city-map/markers/routes/waypoint.png",
+      "crop": [
+        313,
+        0,
+        627,
+        313
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e0cf55e6e604fc8f9232d95f29bbd7b96827cfe07733374bcd1dc6efe7bce29f"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/search.png",
+      "crop": [
+        0,
+        0,
+        250,
+        313
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "db8c3da218e2e73769b5f4c9a657104b36a2c9e94a24dbb9c0003dfca1941bd3"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/filter.png",
+      "crop": [
+        250,
+        0,
+        501,
+        313
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "0a7fb17e78b1bfcbb4b8484f620bf3c3fbf4bd5fd1fcb59273d3c04afd5606e2"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/layers.png",
+      "crop": [
+        501,
+        0,
+        752,
+        313
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "6bcbc0cfcd0b15efba390de19cbacf0546f1a3f3c0358ad5bbefb58900b7daff"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/zoom-in.png",
+      "crop": [
+        752,
+        0,
+        1003,
+        313
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "f99e23af7ac2df1392056a71ed107e019893e1c68b0b62aff8a21f69dd779fcc"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/zoom-out.png",
+      "crop": [
+        1003,
+        0,
+        1254,
+        313
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "1a5f0b93674b1e220839cd7659cf1e97efd63e5dd32f478f6ed4bb0d4108f9ef"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/reset.png",
+      "crop": [
+        0,
+        313,
+        250,
+        627
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "77554f67a34c54ae2b60a002af5092160703eadae8b152171de2389a6e3b1743"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/party.png",
+      "crop": [
+        250,
+        313,
+        501,
+        627
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "02cf401690f754ad454620d78e42f80780bef41e90424a305ad9b70510853cdb"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/route.png",
+      "crop": [
+        501,
+        313,
+        752,
+        627
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "e6800f786e188b95086e8997b1055158f59ebf505271ce555f195e49668e759e"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/fullscreen.png",
+      "crop": [
+        752,
+        940,
+        1003,
+        1254
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "96237eea6f4345380b5b86d51094855f8281f7dfe9572c6524f4128f29fc552d"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/close.png",
+      "crop": [
+        501,
+        940,
+        752,
+        1254
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "174b552f75c3820510953bde8a80b71cee3f0c8453980cfc88211cecc7b1f1f9"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/edit.png",
+      "crop": [
+        752,
+        627,
+        1003,
+        940
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "e8a27f9519bc18d64f011d449396a34e04d38f4f0e1dbe360eeeab59550b630b"
+    },
+    {
+      "source": "Изображение ChatGPT 24 нояб. 2026 г., 20_15_00-2.png",
+      "path": "assets/city-map/controls/add.png",
+      "crop": [
+        1003,
+        627,
+        1254,
+        940
+      ],
+      "size": [
+        51,
+        64
+      ],
+      "sha256": "79719b9bff8c5c039cbb1447df5e19734f2926f1b8b7e08168fcc83d40f8a7ba"
+    }
+  ]
+}
