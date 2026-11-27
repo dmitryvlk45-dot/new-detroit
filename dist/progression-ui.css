@@ -67,3 +67,5 @@ body.progression-open{overflow:hidden}
 
 .progression-skill-filter{display:flex;gap:6px;padding:0 2px 12px;flex-shrink:0}#dialog.progression-dialog .progression-skill-filter button{font-size:14px;min-height:36px;padding:6px 10px}.progression-skill-filter button[aria-pressed=true]{background:#41121f;border-color:#ff294b}.progression-max-rank{font-size:15px;color:#d2c8cf}
 
+.progression-section>header .progression-skill-filter{padding:0;gap:6px}
+
