@@ -65,3 +65,5 @@ body.progression-open{overflow:hidden}
 #dialog.progression-dialog .progression-header-controls #progression-close:hover{background:#48424e;border-color:#fd607a;color:#fff;box-shadow:none}
 @media(max-width:600px){.progression-heading{grid-template-columns:minmax(0,1fr);gap:10px}.progression-header-controls{grid-column:1;justify-self:end;max-width:100%;padding-left:12px;gap:10px}#dialog.progression-dialog .progression-header-controls .progression-balance{font-size:16px}.progression-header-controls .progression-balance b{font-size:19px}}
 
+.progression-skill-filter{display:flex;gap:6px;padding:0 2px 12px;flex-shrink:0}#dialog.progression-dialog .progression-skill-filter button{font-size:14px;min-height:36px;padding:6px 10px}.progression-skill-filter button[aria-pressed=true]{background:#41121f;border-color:#ff294b}.progression-max-rank{font-size:15px;color:#d2c8cf}
+

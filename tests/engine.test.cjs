@@ -59,7 +59,7 @@ assert.equal(E.validate(D.initial,D).experience,0);
 assert.equal(E.blank(D).experience,0);
 assert.equal(E.validate({...c,experience:3},D).experience,3);
 for(const experience of [-1,1.5,'3',Infinity,Number.MAX_SAFE_INTEGER+1])assert.throws(()=>E.validate({...c,experience},D),/Опыт/);
-assert.equal(E.canSpendExperience({experience:2}),false);
+assert.equal(E.canSpendExperience({experience:2}),true);
 assert.equal(E.canSpendExperience({experience:3}),true);
 assert.equal(E.canSpendExperience({}),false);
 console.log('PASS: legacy/default XP, persisted XP, invalid XP and spending threshold.');

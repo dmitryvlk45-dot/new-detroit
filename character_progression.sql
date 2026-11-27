@@ -49,17 +49,22 @@ begin
  if r.revision<>p_revision then raise exception 'Карточка изменена в другом окне. Закрой магазин и обнови карточку.'; end if;
  c:=r.data;
  if jsonb_typeof(c->'experience') is distinct from 'number' or (c->>'experience')!~'^\d+$' then raise exception 'Некорректный баланс опыта'; end if;
- if (c->>'experience')::bigint<3 then raise exception 'Для развития необходимо минимум 3 ОО'; end if;
  select campaign_id into campaign from public.campaign_characters where character_id=p_character_id;
  if p_kind in ('attribute','skill') then
-  if (select count(*) from public.character_progression where character_id=p_character_id and campaign_id is not distinct from campaign and kind=p_kind)>=2 then raise exception 'Лимит повышений за кампанию исчерпан'; end if;
+  if p_kind='attribute' and (select count(*) from public.character_progression where character_id=p_character_id and campaign_id is not distinct from campaign and kind=p_kind)>=2 then raise exception 'Лимит повышений за кампанию исчерпан'; end if;
   ids:=case when p_kind='attribute' then array['body','reflexes','neuroplasticity','charisma'] else array['brawling','fortitude','athletics','shooting','stealth','piloting','hacking','engineering','deduction','communication','intimidation','intuition'] end;
   idx:=array_position(ids,p_target_id)-1;
   if idx is null then raise exception 'Неизвестное улучшение'; end if;
   old_value:=(c #>> array[case when p_kind='attribute' then 'attributes' else 'skills' end,idx::text])::integer;
   if old_value is null or old_value<0 then raise exception 'Некорректное базовое значение'; end if;
-  if p_kind='skill' and (old_value<>2 or exists(select 1 from public.character_progression where character_id=p_character_id and campaign_id is not distinct from campaign and kind='skill' and target_id=p_target_id)) then raise exception 'Доступно только однократное повышение навыка с 2 до 3'; end if;
-  price:=case when p_kind='attribute' then 8 else 5 end;
+  if p_kind='skill' then
+   if old_value>=3 then raise exception 'Максимальный ранг навыка: +3'; end if;
+   if old_value=2 and (select count(distinct target) from (
+    select ids[ordinality::integer] as target from jsonb_array_elements(c->'skills') with ordinality where value='3'::jsonb
+    union select h.target_id from public.character_progression h where h.character_id=p_character_id and h.campaign_id is not distinct from campaign and h.kind='skill' and h.after_value='3'::jsonb
+   ) ranks where target<>p_target_id)>=2 then raise exception 'Лимит двух навыков ранга +3 исчерпан'; end if;
+  end if;
+  price:=case when p_kind='attribute' then 8 when old_value=0 then 2 when old_value=1 then 3 else 5 end;
   new_value:=old_value+1;before_value:=to_jsonb(old_value);after_value:=to_jsonb(new_value);
   c:=jsonb_set(c,array[case when p_kind='attribute' then 'attributes' else 'skills' end,idx::text],after_value);
   -- Paid ranks do not change the character-creation skill budget.
@@ -126,3 +131,4 @@ create or replace function public.restore_progression(p_character_id uuid,p_kind
 returns jsonb language sql security invoker set search_path='' as $$ select nd_private.restore_progression(p_character_id,p_kind,p_target_id,p_before,p_after,p_cost,p_operation_id) $$;
 revoke all on function nd_private.progression_state(uuid),nd_private.purchase_progression(uuid,text,text,uuid,integer,integer),nd_private.restore_progression(uuid,text,text,integer,integer,integer,uuid),public.progression_state(uuid),public.purchase_progression(uuid,text,text,uuid,integer,integer),public.restore_progression(uuid,text,text,integer,integer,integer,uuid) from public,anon;
 grant execute on function nd_private.progression_state(uuid),nd_private.purchase_progression(uuid,text,text,uuid,integer,integer),nd_private.restore_progression(uuid,text,text,integer,integer,integer,uuid),public.progression_state(uuid),public.purchase_progression(uuid,text,text,uuid,integer,integer),public.restore_progression(uuid,text,text,integer,integer,integer,uuid) to authenticated;
+

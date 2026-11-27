@@ -13,9 +13,9 @@ function requirements(item,c){
 }
 function options(c,catalog,history=[]){
  const counts=kind=>history.filter(x=>x.kind===kind).length;
- const rows=[];
- for(const kind of ['attribute','skill']){const ids=kind==='attribute'?V.attributeIds:V.skillIds,values=c[kind==='attribute'?'attributes':'skills'],cost=kind==='attribute'?8:5;
- ids.forEach((id,i)=>{const before=values[i],after=before+1,reasons=[];if(counts(kind)>=2)reasons.push('Лимит за кампанию: 2 из 2');if(kind==='skill'){if(before!==2)reasons.push('Доступно только повышение базового ранга 2 → 3');if(history.some(x=>x.kind===kind&&x.target_id===id))reasons.push('Этот навык уже улучшен за кампанию');}if(c.experience<cost)reasons.push(`Не хватает ${cost-c.experience} ОО`);rows.push({kind,id,name:names[kind][i],before,after,cost,reasons});});}
+ const rows=[];const rankThree=new Set(V.skillIds.filter((id,i)=>c.skills[i]===3));for(const h of history)if(h.kind==='skill'&&Number(h.after_value)===3)rankThree.add(h.target_id);
+ for(const kind of ['attribute','skill']){const ids=kind==='attribute'?V.attributeIds:V.skillIds,values=c[kind==='attribute'?'attributes':'skills'];
+ ids.forEach((id,i)=>{const before=values[i],after=kind==='skill'?Math.min(3,before+1):before+1,cost=kind==='attribute'?8:[2,3,5][before]??null,reasons=[];if(kind==='attribute'&&counts(kind)>=2)reasons.push('Лимит за кампанию: 2 из 2');if(kind==='skill'){if(before>=3)reasons.push('Максимальный ранг');else if(before===2&&[...rankThree].filter(x=>x!==id).length>=2)reasons.push('Лимит двух навыков ранга +3 исчерпан');}if(cost!==null&&c.experience<cost)reasons.push(`Не хватает ${cost-c.experience} ОО`);rows.push({kind,id,name:names[kind][i],before,after,cost,reasons});});}
  const owned=V.normalizeCharacter(c,catalog).equipmentItems.filter(x=>x.snapshot?.classId==='perk'||V.resolve(catalog,x.catalogId)?.classId==='perk');
  for(const item of V.all(catalog).filter(x=>x.classId==='perk'&&!x.archived)){
  const cost=item.economy?.price,reasons=requirements(item,c),learned=owned.filter(x=>x.metadata?.learned||x.location==='learned'||x.legacySlot?.category==='perks');
@@ -29,3 +29,4 @@ function options(c,catalog,history=[]){
 root.ND_PROGRESSION_MODEL={names,requirements,options};
 if(typeof module!=='undefined')module.exports=root.ND_PROGRESSION_MODEL;
 })(typeof window!=='undefined'?window:globalThis);
+

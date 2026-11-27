@@ -37,7 +37,8 @@
  function blank(data){const c=clone(data.initial);for(const k of ['name','nickname','age','bio','armor'])c[k]='';c.photo='';c.attributes=[0,0,0,0];c.skills=Array(12).fill(0);c.hp=3;c.armorSpent=0;c.money=0;c.experience=0;for(const k of ['weapons','programs','perks'])c[k]=c[k].map(()=>'');c.implants=c.implants.map(()=>({name:'',quality:''}));c.consumables=c.consumables.map(()=>({name:'',quantity:''}));c.inventory=[];c.notes=[];return c;}
  function validateCreation(c,data){validate(c,data);if(c.skills.some(x=>x>2))throw Error('При создании персонажа навык не может быть выше 2');const d=derive(c,data.catalog);if(!d.validAttributes)throw Error('Распредели характеристики: 2, 1, 1, 0');if(d.skillPoints!==0)throw Error(d.skillPoints<0?'Потрачено слишком много очков навыков':'Распредели все очки навыков');return c;}
  function clearCardCache(storage,id){for(let i=storage.length-1;i>=0;i--){const key=storage.key(i);if(key?.startsWith('nd-draft-')&&key.endsWith('-'+id))storage.removeItem(key);}}
- const canSpendExperience=c=>Number.isSafeInteger(c.experience)&&c.experience>2;
+ const canSpendExperience=(c,catalog=root.ND_DATA?.catalog)=>{if(!Number.isSafeInteger(c.experience)||c.experience<0)return false;if(c.experience>=2)return true;const M=root.ND_PROGRESSION_MODEL||(typeof require==='function'?require('./progression-model.js'):null);return !!(M&&catalog&&M.options(c,catalog).some(x=>x.kind==='perk'&&!x.reasons.length));};
  root.ND_ENGINE={derive,validate,clone,blank,validateCreation,clearCardCache,canSpendExperience,calculateCharacterStats:V.calculateCharacterStats,calculateCheckModifier:V.calculateCheckModifier,normalizeCharacter:V.normalizeCharacter,migrateLegacyCharacter:V.normalizeCharacter};
  if(typeof module!=='undefined')module.exports=root.ND_ENGINE;
 })(typeof window!=='undefined'?window:globalThis);
+

@@ -15,7 +15,7 @@ const area=(label,path,value)=>`<label class="field"><span>${label}</span><texta
 function selector(path,selected,options,label){return `<select aria-label="${esc(label)}" data-path="${path}">${options.map(x=>`<option value="${esc(x)}" ${x===selected?'selected':''}>${esc(x===''?'Не выбрано':Object.values(D.catalog).flat().find(i=>i.name===x)?.displayName||x)}</option>`).join('')}</select>`;}
 function section(title,body,meta=''){return `<section class="panel"><header class="panel-head"><h2>${title}</h2><span>${meta}</span></header>${body}</section>`;}
 function pips(kind,n,current){return `<div class="pips">${Array.from({length:n},(_,i)=>`<button class="pip ${i<current?'filled':''}" data-pip="${kind}" data-value="${i<current?current-1:i+1}" aria-label="${kind==='hp'?'Здоровье':'Броня'}: ${i+1}" aria-pressed="${i<current}"></button>`).join('')}</div>`;}
-function updateExperienceControls(){const button=$('#spend-experience');if(button)button.disabled=!canEdit||!E.canSpendExperience(card);const hint=$('#experience-hint');if(hint)hint.textContent=E.canSpendExperience(card)?'Доступно меню развития':'Для развития необходимо минимум 3 ОО';}
+function updateExperienceControls(){const button=$('#spend-experience');if(button)button.disabled=!canEdit||!E.canSpendExperience(card,D.catalog);const hint=$('#experience-hint');if(hint)hint.textContent=E.canSpendExperience(card,D.catalog)?'Доступно меню развития':'Для развития необходимо минимум 2 ОО';}
 function experienceMenu(){return window.ND_PROGRESSION?.open();}
 function loadout(kind,count){if(window.ND_SHEET_V2)return window.ND_SHEET_V2.equipment(kind);const arr=kind==='armor'?[card.armor]:card[kind];return arr.slice(0,count??arr.length).map((item,i)=>{
  const name=typeof item==='object'?item.name:item;const entry=D.catalog[kind].find(x=>x.name===name);
@@ -79,3 +79,4 @@ window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.return
 window.addEventListener('online',()=>{if(dirty&&!conflict)save();});
 setInterval(async()=>{if(portalView!=='editor'||!cloudRecord||dirty||saving||document.hidden||$('#dialog').open||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName))return;try{const fresh=await C.load(cloudRecord.id);if(fresh.revision!==cloudRecord.revision){card=E.validate(fresh.data,D);cloudRecord=fresh;setStatus(confirmedSyncStatus());render();}}catch(e){if(e.code==='CARD_UNAVAILABLE'){const id=cloudRecord.id;purgeDeletedCard(id);showLibrary();notify(e.message);}else setStatus('Нет обновлений: проверь соединение или доступ');}},10000);
 // Entry and authentication are handled by portal.js.
+
