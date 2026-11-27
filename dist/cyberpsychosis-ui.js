@@ -22,7 +22,7 @@ window.ND_CYBER_UI=(()=>{
   if(!d.cyberpsychosis.stage)return;
   const chrome=root.querySelector('.dossier-chrome,.chrome-load');
   if(chrome){chrome.classList.add('cyber-chrome');chrome.insertAdjacentHTML('beforeend',frame('warning')+frame('emergency'));}
-  if(page==='chrome'&&chrome){chrome.insertAdjacentHTML('beforeend',`<div class="cyber-chrome-summary">${title(d.cyberpsychosis)}<span class="cyber-excess">Превышение: +${d.cyberpsychosis.excess}</span></div>`);}
+  if(page==='chrome'&&chrome){const detail=chrome.querySelector(':scope > p');if(detail){detail.classList.add('cyber-chrome-summary');detail.innerHTML=`${title(d.cyberpsychosis)}<span class="cyber-excess">Превышение: +${d.cyberpsychosis.excess}</span>`;}}
   const portrait=root.querySelector('.dossier-portrait');
   if(portrait){portrait.classList.add('cyber-portrait');portrait.insertAdjacentHTML('beforeend','<span class="cyber-portrait-layer" aria-hidden="true"></span>');}
   // Bound the compositor work even for inventories with hundreds of items.
@@ -34,3 +34,4 @@ window.ND_CYBER_UI=(()=>{
  window.addEventListener('storage',e=>{if(e.key===key){reduced=e.newValue==='true';preferences();}});
  return {attrs,layers,metric,apply};
 })();
+

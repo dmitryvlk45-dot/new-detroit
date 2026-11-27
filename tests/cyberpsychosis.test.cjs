@@ -29,3 +29,6 @@ test('PNG inventory is complete, decorative layers cannot receive clicks, reduce
  for(const row of manifest)assert(fs.existsSync('dist/assets/cyberpsychosis/'+row.file));
  const css=fs.readFileSync('dist/cyberpsychosis.css','utf8');assert.match(css,/pointer-events:none!important/);assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);assert.match(css,/body:has\(dialog\[open\]\)/);assert.match(css,/@media\(max-width:700px\)/);assert.doesNotMatch(css,/\.character-sheet\s*\{[^}]*transform:/);
 });
+
+test('Chrome tab reuses its existing detail column instead of shrinking the load display',()=>{const f=fixture(),detail={classList:{add(){}},innerHTML:''},inserted=[];const chrome={classList:{add(){}},insertAdjacentHTML:(where,html)=>inserted.push(html),querySelector:()=>detail};f.root.querySelector=s=>s==='.dossier-chrome,.chrome-load'?chrome:null;f.root.querySelectorAll=()=>[];f.ui.apply({used:11,capacity:7,cyberpsychosis:P.state(11,7)},'chrome');assert.match(detail.innerHTML,/Стадия II/);assert.equal(inserted.length,1);assert.doesNotMatch(inserted[0],/cyber-chrome-summary/);});
+
