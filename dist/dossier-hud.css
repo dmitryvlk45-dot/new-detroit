@@ -94,7 +94,7 @@
 /* Emergency layers remain above the HUD, below controls, with their existing timing. */
 .dossier-layout .cyber-frame,.dossier-layout .cyber-portrait-layer{z-index:2}
 .dossier-layout .dossier-chrome .cyber-metric-status{position:relative;z-index:3}
-.dossier-layout .cyber-title{font-size:clamp(15px,1.3vw,20px)}
+.dossier-layout .cyber-title{font-size:clamp(19px,1.9vw,30px);font-style:italic;text-shadow:0 0 9px #ff284466}
 @media(min-width:900px) and (max-width:1200px){
  .character-sheet .dossier-layout{grid-template-columns:minmax(0,28%) minmax(0,1fr);gap:12px}
  .dossier-person{padding:6px 14px 0}.dossier-file-label{margin:0 14px}.dossier-bio{margin-left:14px;margin-right:14px}
