@@ -1,0 +1,116 @@
+[
+  {
+    "sha256": "BBDAC7C2B016AEBBE6047814D02ACFD78BF9A80CFFBD5EE54F5E56018718D5C6",
+    "bytes": 3991,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/chrome_emergency_frame_stage_1.png",
+    "file": "chrome_emergency_frame_stage_1.png"
+  },
+  {
+    "sha256": "E0B33742C3C586C5A3FC06FAB5933283AFB93ECA114E5ED6293735D078DEE704",
+    "bytes": 4518,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/chrome_emergency_frame_stage_2.png",
+    "file": "chrome_emergency_frame_stage_2.png"
+  },
+  {
+    "sha256": "DD53B84571E21D962E55E045228C9032EDF2E5B67BB80AF147FED28963304419",
+    "bytes": 5452,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/chrome_emergency_frame_stage_3.png",
+    "file": "chrome_emergency_frame_stage_3.png"
+  },
+  {
+    "sha256": "9E277004448D4370A82ED3BAEC3062CA667D48EA46885A5FCEDC75E2AEC8E797",
+    "bytes": 2572,
+    "source": "Wicked_Detroit_Cyberpsychosis_Assets/chrome_warning_frame_stage_1.png",
+    "file": "chrome_warning_frame_stage_1.png"
+  },
+  {
+    "sha256": "3EA3F3058E0931550770DAED6BE83138457522181A135D9B31A9D78EF5D23134",
+    "bytes": 2862,
+    "source": "Wicked_Detroit_Cyberpsychosis_Assets/chrome_warning_frame_stage_2.png",
+    "file": "chrome_warning_frame_stage_2.png"
+  },
+  {
+    "sha256": "3D97F73F64A299C0406824496BC1EC0807842BB493ED371FFE5D741A94E2F977",
+    "bytes": 3241,
+    "source": "Wicked_Detroit_Cyberpsychosis_Assets/chrome_warning_frame_stage_3.png",
+    "file": "chrome_warning_frame_stage_3.png"
+  },
+  {
+    "sha256": "49316A573D6BFE48B183F6B5131FB838BEE63B2DA078DF3D47C2BC0033731C26",
+    "bytes": 7417,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/cyberpsychosis_stage_1_overlay.png",
+    "file": "cyberpsychosis_stage_1_overlay.png"
+  },
+  {
+    "sha256": "18ACD37A25C2C80B7DA86EDDD258B284899559CE57ECB7342802614D5464038A",
+    "bytes": 11240,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/cyberpsychosis_stage_2_overlay.png",
+    "file": "cyberpsychosis_stage_2_overlay.png"
+  },
+  {
+    "sha256": "AD9DBE77ECBA9C74B7817890E6807D34E936CA7617FE25953B15C3E2CADB33B6",
+    "bytes": 15589,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/cyberpsychosis_stage_3_overlay.png",
+    "file": "cyberpsychosis_stage_3_overlay.png"
+  },
+  {
+    "sha256": "94899FF9B85946A7917B8F42C9A68180F471236B98D70ABDA3F518458BA61146",
+    "bytes": 1034,
+    "source": "Wicked_Detroit_Cyberpsychosis_Pack_II/glitch_strip_stage_1.png",
+    "file": "glitch_strip_stage_1.png"
+  },
+  {
+    "sha256": "650A69C68E2DCF0E16EF6CAA6838EF18DF47EF64B30A39D3B1801125396FBACE",
+    "bytes": 1409,
+    "source": "Wicked_Detroit_Cyberpsychosis_Pack_II/glitch_strip_stage_2.png",
+    "file": "glitch_strip_stage_2.png"
+  },
+  {
+    "sha256": "2AE3D2C2FBB1060CB6281469D63643E34D77B6E5BD1EDEC48B6BE4E676D1026E",
+    "bytes": 1939,
+    "source": "Wicked_Detroit_Cyberpsychosis_Pack_II/glitch_strip_stage_3.png",
+    "file": "glitch_strip_stage_3.png"
+  },
+  {
+    "sha256": "7FE37C76E1A1F4871858A879B6FD632E9615C307803F6C778CAB4616D5EC1681",
+    "bytes": 3874,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/panel_broken_frame_stage_1.png",
+    "file": "panel_broken_frame_stage_1.png"
+  },
+  {
+    "sha256": "8B3968EE4ACE44B631E9A1DACF9743A04F52D130E6B0CA9AB16EC5DDDCA33928",
+    "bytes": 3956,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/panel_broken_frame_stage_2.png",
+    "file": "panel_broken_frame_stage_2.png"
+  },
+  {
+    "sha256": "72CB69E0025CB56F5E2D96857146731A6C641C8B3AE9665EECA18C744CD447DD",
+    "bytes": 4714,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/panel_broken_frame_stage_3.png",
+    "file": "panel_broken_frame_stage_3.png"
+  },
+  {
+    "sha256": "1BA5F823D131773A67490A94AF63A6842D30AEBDAEB862992CDCF3C0B576A692",
+    "bytes": 2294,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/portrait_glitch_stage_1.png",
+    "file": "portrait_glitch_stage_1.png"
+  },
+  {
+    "sha256": "118AC682C3D753DACB0C18BC41E020FBAA7FEAA4D626AA98E68B632703BDA2D0",
+    "bytes": 4424,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/portrait_glitch_stage_2.png",
+    "file": "portrait_glitch_stage_2.png"
+  },
+  {
+    "sha256": "E6E15C37B081D10E158FBBBC5D2BEEC08229B0393A94201485166A3E2BFF794E",
+    "bytes": 6936,
+    "source": "WD_Cyberpsychosis_Animation_Kit/assets/portrait_glitch_stage_3.png",
+    "file": "portrait_glitch_stage_3.png"
+  },
+  {
+    "sha256": "E58280C4594A87C79B8EEA6A3FA7FE030779A2C27E80FF12C6ECA10CFF12014E",
+    "bytes": 1926,
+    "source": "Wicked_Detroit_Cyberpsychosis_Pack_II/warning_alert.png",
+    "file": "warning_alert.png"
+  }
+]

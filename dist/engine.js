@@ -3,9 +3,10 @@
  const clone=x=>JSON.parse(JSON.stringify(x));
  const J=root.ND_JOURNAL_MODEL||(typeof require==='function'?require('./journal-model.js'):null);
  const V=root.ND_CATALOG_V2||(typeof require==='function'?require('./catalog-v2.js'):null);
+ const P=root.ND_CYBER_MODEL||(typeof require==='function'?require('./cyberpsychosis-model.js'):null);
  function derive(c,catalog){
   const stats=V.calculateCharacterStats(c,catalog),{maxHP,armor,currentArmor}=stats,{used,capacity}=stats.chrome;
-  return {maxHP,armor,currentArmor,used,capacity,freeChrome:capacity-used,psychosis:Math.max(0,used-capacity),skillPoints:4+c.attributes[2]-c.skills.reduce((a,b)=>a+b,0)+(c.developmentSkillOffset||0),validAttributes:c.attributes.slice().sort().join() === '0,1,1,2',stats};
+  return {cyberpsychosis:P.state(used,capacity),maxHP,armor,currentArmor,used,capacity,freeChrome:capacity-used,psychosis:Math.max(0,used-capacity),skillPoints:4+c.attributes[2]-c.skills.reduce((a,b)=>a+b,0)+(c.developmentSkillOffset||0),validAttributes:c.attributes.slice().sort().join() === '0,1,1,2',stats};
  }
  function validate(c,data){
   if(!c||typeof c!=='object')throw Error('Некорректная карточка');
@@ -41,4 +42,3 @@
  root.ND_ENGINE={derive,validate,clone,blank,validateCreation,clearCardCache,canSpendExperience,calculateCharacterStats:V.calculateCharacterStats,calculateCheckModifier:V.calculateCheckModifier,normalizeCharacter:V.normalizeCharacter,migrateLegacyCharacter:V.normalizeCharacter};
  if(typeof module!=='undefined')module.exports=root.ND_ENGINE;
 })(typeof window!=='undefined'?window:globalThis);
-

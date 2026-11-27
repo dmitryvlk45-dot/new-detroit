@@ -1,0 +1,53 @@
+/* Animation Kit adapted to bounded, decorative layers. Real controls never move. */
+.character-sheet[data-cyber-stage]{position:relative;isolation:isolate;--cyber-alpha:.25;--cyber-period:12s;--cyber-pulse:cyber-low}
+.character-sheet[data-cyber-stage]>.sheet-header,.character-sheet[data-cyber-stage]>.sheet-main{position:relative;z-index:1}
+.character-sheet[data-cyber-stage="2"]{--cyber-alpha:.5;--cyber-period:6s;--cyber-pulse:cyber-mid}
+.character-sheet[data-cyber-stage="3"]{--cyber-alpha:.75;--cyber-period:3.5s;--cyber-pulse:cyber-high}
+.cyber-background,.cyber-strip,.cyber-frame,.cyber-portrait-layer{pointer-events:none!important;user-select:none}
+.cyber-background{position:absolute;inset:0 4px;z-index:0;overflow:hidden;background:var(--cyber-overlay) center top/1600px 900px repeat-y;opacity:0;animation:var(--cyber-pulse) var(--cyber-period) steps(1,end) infinite}
+.cyber-strip{position:absolute;top:76px;left:1%;right:1%;height:12px;overflow:hidden;z-index:0;background:var(--cyber-strip) center/cover no-repeat;opacity:0;animation:var(--cyber-pulse) var(--cyber-period) steps(1,end) infinite;animation-delay:1s}
+.cyber-chrome,.cyber-portrait,.cyber-panel{position:relative;isolation:isolate}
+.cyber-frame{position:absolute;inset:0;z-index:2;border:10px solid transparent;opacity:var(--cyber-alpha);border-image-source:var(--cyber-panel);border-image-slice:32;border-image-width:10px;border-image-repeat:stretch}
+.cyber-frame-warning{border-image-source:var(--cyber-warning);border-image-slice:30}
+.cyber-frame-emergency{border-image-source:var(--cyber-emergency);border-image-slice:30;opacity:0;animation:var(--cyber-pulse) var(--cyber-period) steps(1,end) infinite}
+.cyber-chrome{box-shadow:inset 0 0 20px #f024}
+.cyber-chrome::after{content:'';position:absolute;right:10px;top:10px;width:20px;height:20px;background:url('assets/cyberpsychosis/warning_alert.png') center/contain no-repeat;pointer-events:none;opacity:.8}
+.cyber-chrome>h2{padding-right:24px}
+.cyber-metric-status{display:flex;flex-direction:column;gap:3px;margin-top:8px;min-width:0}
+.cyber-title{display:block;position:relative;font-family:'Roboto Condensed','Segoe UI',sans-serif;font-size:clamp(15px,1.65vw,24px);font-weight:900;letter-spacing:-.025em;line-height:1.2;color:#ff3155;text-shadow:0 0 9px #ff214c66;white-space:nowrap}
+.cyber-title-copy{position:absolute;inset:0;color:#ff4567;text-shadow:-1px 0 #22d9e8,1px 0 #ff3158;clip-path:inset(30% 0 35%);opacity:0;pointer-events:none;animation:var(--cyber-pulse) var(--cyber-period) steps(1,end) infinite}
+[data-cyber-stage="2"] .cyber-title-copy{clip-path:inset(20% 0 40%);text-shadow:-2px 0 #22d9e8,2px 0 #ff3158}
+[data-cyber-stage="3"] .cyber-title-copy{clip-path:inset(15% 0 25%);text-shadow:-3px 0 #22d9e8,3px 0 #ff3158}
+.cyber-stage-label,.cyber-chrome-values,.cyber-excess{font-size:12px;line-height:1.35;color:#e6b7c1;overflow-wrap:anywhere}
+.cyber-stage-label{font-weight:600}.cyber-chrome-values{color:#f6e6ea}.cyber-excess{color:#ff829a}
+.cyber-chrome-summary{display:flex;flex-direction:column;gap:4px;grid-column:1/-1;flex-basis:100%;padding:8px 0 0}
+.cyber-portrait-layer{position:absolute;inset:0;z-index:2;background:var(--cyber-portrait) center/cover no-repeat;opacity:0;animation:var(--cyber-pulse) var(--cyber-period) steps(1,end) infinite;animation-delay:.4s;overflow:hidden}
+.cyber-portrait #edit-photo{z-index:3}
+.character-sheet .cyber-preference{display:flex;align-items:center;justify-content:flex-end;gap:7px;font-size:12px;line-height:1.4;color:#bdb4bf;margin-top:8px;cursor:pointer}
+.character-sheet .cyber-preference input{width:16px;height:16px;min-height:0;padding:0;accent-color:#ff294b;flex:0 0 16px}
+/* Editors, map and journal keep all interactive surfaces free of interference. */
+[data-cyber-page="notes"] .cyber-background,[data-cyber-page="city-map"] .cyber-background{opacity:.06;animation:none}
+[data-cyber-page="notes"] .cyber-strip,[data-cyber-page="city-map"] .cyber-strip{display:none}
+@keyframes cyber-low{0%,97.9%,99.5%,100%{opacity:0;transform:none}98%,99.4%{opacity:var(--cyber-alpha);transform:translateX(1px)}}
+@keyframes cyber-mid{0%,93.9%,98%,100%{opacity:0;transform:none}94%,97.9%{opacity:var(--cyber-alpha);transform:translateX(-2px)}}
+@keyframes cyber-high{0%,89.9%,99%,100%{opacity:0;transform:none}90%,98.9%{opacity:var(--cyber-alpha);transform:translateX(3px)}}
+@media(max-width:700px){
+ .cyber-background,.cyber-strip,.cyber-frame-emergency{display:none}
+ .cyber-panel .cyber-frame{animation:none;opacity:.18}
+ [data-cyber-stage="1"] .cyber-panel .cyber-frame{display:none}
+ .cyber-title{font-size:clamp(14px,4vw,22px)}
+ .cyber-title-copy{animation:none;opacity:0}
+ .character-sheet .cyber-preference{font-size:11px;margin-top:6px}
+}
+/* Disable only this feature's decoration, never unrelated component animations. */
+[data-cyber-effects="reduced"] .cyber-background,[data-cyber-effects="reduced"] .cyber-strip,[data-cyber-effects="reduced"] .cyber-portrait-layer,[data-cyber-effects="reduced"] .cyber-frame-panel{display:none}
+[data-cyber-effects="reduced"] .cyber-title{text-shadow:none}
+[data-cyber-effects="reduced"] .cyber-title-copy,[data-cyber-effects="reduced"] .cyber-frame-emergency{animation:none;opacity:0}
+[data-cyber-paused="true"] :is(.cyber-background,.cyber-strip,.cyber-title-copy,.cyber-portrait-layer,.cyber-frame-emergency),body:has(dialog[open]) :is(.cyber-background,.cyber-strip,.cyber-title-copy,.cyber-portrait-layer,.cyber-frame-emergency),.character-sheet:has(textarea:focus,[contenteditable="true"]:focus) :is(.cyber-background,.cyber-strip,.cyber-title-copy,.cyber-portrait-layer,.cyber-frame-emergency){animation-play-state:paused;opacity:0}
+@media(prefers-reduced-motion:reduce){.cyber-background,.cyber-strip,.cyber-portrait-layer,.cyber-frame-panel{display:none}.cyber-title-copy,.cyber-frame-emergency{animation:none!important;opacity:0!important}.cyber-title{text-shadow:none}}
+
+[data-cyber-stage="1"]{--cyber-overlay:url('assets/cyberpsychosis/cyberpsychosis_stage_1_overlay.png');--cyber-strip:url('assets/cyberpsychosis/glitch_strip_stage_1.png');--cyber-panel:url('assets/cyberpsychosis/panel_broken_frame_stage_1.png');--cyber-warning:url('assets/cyberpsychosis/chrome_warning_frame_stage_1.png');--cyber-emergency:url('assets/cyberpsychosis/chrome_emergency_frame_stage_1.png');--cyber-portrait:url('assets/cyberpsychosis/portrait_glitch_stage_1.png')}
+
+[data-cyber-stage="2"]{--cyber-overlay:url('assets/cyberpsychosis/cyberpsychosis_stage_2_overlay.png');--cyber-strip:url('assets/cyberpsychosis/glitch_strip_stage_2.png');--cyber-panel:url('assets/cyberpsychosis/panel_broken_frame_stage_2.png');--cyber-warning:url('assets/cyberpsychosis/chrome_warning_frame_stage_2.png');--cyber-emergency:url('assets/cyberpsychosis/chrome_emergency_frame_stage_2.png');--cyber-portrait:url('assets/cyberpsychosis/portrait_glitch_stage_2.png')}
+
+[data-cyber-stage="3"]{--cyber-overlay:url('assets/cyberpsychosis/cyberpsychosis_stage_3_overlay.png');--cyber-strip:url('assets/cyberpsychosis/glitch_strip_stage_3.png');--cyber-panel:url('assets/cyberpsychosis/panel_broken_frame_stage_3.png');--cyber-warning:url('assets/cyberpsychosis/chrome_warning_frame_stage_3.png');--cyber-emergency:url('assets/cyberpsychosis/chrome_emergency_frame_stage_3.png');--cyber-portrait:url('assets/cyberpsychosis/portrait_glitch_stage_3.png')}
