@@ -49,7 +49,7 @@
 .dossier-armor-select select{font-size:13px;background:#11121be8;border-color:#69313e}
 .dossier-details-grid,.dossier-loadout-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start;margin-bottom:16px}
 .dossier-loadout-grid{margin-bottom:0}
-.dossier-module>summary{padding:19px 20px 17px;gap:10px;min-height:68px;position:relative}
+.dossier-module>summary{padding:16px 20px 14px;gap:10px;min-height:60px;position:relative}
 .dossier-module>summary>span{font-size:clamp(21px,1.8vw,28px);line-height:1.15}
 .dossier-module>summary>small{font-size:12px}
 .dossier-module[open]>summary{border:0}
@@ -67,7 +67,9 @@
 .dossier-bonus{font-size:17px}
 .dossier-zero{font-size:15px}
 .dossier-info p,.dossier-sources{font-size:13px;line-height:1.6}
-.dossier-skill-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;min-height:54px;padding:13px 0;align-items:start;border-color:#3b303e}
+.dossier-skill-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;min-height:46px;padding:9px 0;align-items:start;border-color:#3b303e}
+.dossier-details-grid:has([data-dossier-filter="all"][aria-pressed="true"]){align-items:start}
+.dossier-details-grid:has([data-dossier-filter="all"][aria-pressed="true"])>.dossier-module[open]{height:auto}
 .dossier-skill-row .dossier-info>summary{font-size:17px;line-height:26px}
 .dossier-rank{display:grid;grid-template-columns:repeat(6,18px);gap:3px;align-items:center;padding-top:9px;grid-row:auto;grid-column:auto}
 .dossier-rank .dossier-slot{display:block;width:18px;height:11px;border:0;background:transparent center/100% 100% no-repeat;box-shadow:none}
