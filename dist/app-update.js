@@ -1,6 +1,7 @@
 (function(){
  'use strict';
- const version='2026.11.27-progression-v1.2';let checking=false;
+ const version='2026.11.27-progression-v1.3';let checking=false;
  async function check(){if(checking||document.hidden||document.querySelector('.app-update-banner'))return;checking=true;try{const r=await fetch(new URL('app-version.json',document.baseURI),{cache:'no-store'});if(!r.ok)return;const latest=await r.json();if(typeof latest.version!=='string'||latest.version===version)return;const box=document.createElement('aside');box.className='app-update-banner';box.setAttribute('role','status');const label=document.createElement('span');label.textContent='Доступна новая версия приложения. Обнови страницу, чтобы загрузить изменения.';const button=document.createElement('button');button.textContent='Обновить';button.onclick=async()=>{if(window.ND_JOURNAL?.isDraftDirty()){notify('Сначала сохрани или отмени черновик записи журнала.');return;}await save();if(dirty||saving||conflict){notify('Сначала заверши синхронизацию карточки.');return;}if(document.querySelector('#dialog')?.open){notify('Сначала закрой открытое окно.');return;}location.reload();};box.append(label,button);document.body.append(box);}catch{}finally{checking=false;}}
  window.ND_APP_VERSION=version;window.addEventListener('focus',check);document.addEventListener('visibilitychange',()=>{if(!document.hidden)check();});setInterval(check,60000);check();
 })();
+
