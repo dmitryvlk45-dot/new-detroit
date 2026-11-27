@@ -1,0 +1,135 @@
+/* Shared header geometry; the city is decoration behind the existing navigation. */
+.character-sheet .sheet-header{position:relative;isolation:isolate;background:linear-gradient(90deg,rgba(8,9,15,.92),rgba(8,9,15,.72) 46%,rgba(8,9,15,.35)),url('assets/dossier/backgrounds/city_header_desktop.webp') center 38%/cover no-repeat}
+.character-sheet .sheet-header:after{content:'';position:absolute;inset:auto 0 0;height:6px;background:url('assets/dossier/decor/header_hud_trim.svg') center/100% 100% no-repeat;pointer-events:none;opacity:.55;z-index:-1}
+.character-sheet .sheet-header .sheet-tabs,.character-sheet .sheet-header .sheet-sync{position:relative;z-index:1}
+.character-sheet.is-dossier{--hud-red:#ff2d51;--hud-cyan:#08d5d0;--dossier-bonus:var(--hud-cyan);background-image:linear-gradient(rgba(9,10,16,.78),rgba(9,10,16,.92)),url('assets/dossier/backgrounds/page_tech_grid_overlay.png');background-size:auto,1024px 576px;background-repeat:repeat}
+.character-sheet.is-dossier .sheet-main{padding-top:16px;padding-bottom:26px;background:linear-gradient(90deg,rgba(9,10,16,.88),rgba(9,10,16,.4)),url('assets/dossier/backgrounds/city_header_desktop.webp') top center/100% 250px no-repeat;background-repeat:no-repeat;background-size:100% 250px}
+.character-sheet.is-dossier .sheet-main>.heading{margin-bottom:18px}
+.character-sheet.is-dossier .sheet-section-title{font-size:clamp(34px,3vw,48px);letter-spacing:-.025em}
+.character-sheet.is-dossier .sheet-section-title:after{content:'';display:inline-block;width:106px;height:23px;margin-left:22px;background:url('assets/dossier/decor/slash_accent.svg') center/contain no-repeat;opacity:.7}
+.character-sheet .dossier-layout{grid-template-columns:minmax(0,28%) minmax(0,1fr);gap:16px;align-items:start}
+.dossier-main{min-width:0}
+.dossier-layout :is(.dossier-sidebar,.dossier-metric,.dossier-module,.dossier-weapon-preview,.dossier-perk,.dossier-empty){--hud-frame:url('assets/dossier/frames/hud_panel_section.svg');position:relative;isolation:isolate;border:0;border-radius:0;background:linear-gradient(135deg,rgba(16,16,25,.96),rgba(10,11,18,.98)),url('assets/dossier/backgrounds/panel_microtexture_tile.png');box-shadow:none;overflow:visible}
+.dossier-layout :is(.dossier-sidebar,.dossier-metric,.dossier-module,.dossier-weapon-preview,.dossier-perk,.dossier-empty):before{content:'';position:absolute;inset:0;z-index:-1;border:18px solid transparent;border-image:var(--hud-frame) 52 / 18px / 0 stretch;pointer-events:none}
+.dossier-layout :is(.dossier-sidebar,.dossier-metric,.dossier-module):before{filter:drop-shadow(0 0 2px #ff2d5199) drop-shadow(0 0 7px #ff153b55)}
+.dossier-layout .dossier-sidebar{--hud-frame:url('assets/dossier/frames/hud_panel_profile.svg');padding:6px 6px 46px}
+.dossier-sidebar:after{content:'';position:absolute;inset:auto 24px 16px;height:22px;background:url('assets/dossier/decor/profile_cityline.svg') bottom left/contain no-repeat;opacity:.45;pointer-events:none;z-index:-1}
+.dossier-file-label{margin:0 18px;padding:9px 0;min-height:60px;border-bottom:0}
+.dossier-file-label h2{font-size:clamp(22px,1.8vw,30px);text-transform:uppercase;letter-spacing:.035em;margin:0}
+.dossier-person{padding:8px 18px 0;display:block}
+.dossier-portrait{width:100%;height:auto;max-height:none;aspect-ratio:3/4;border:0;border-radius:0;background:#090b11;isolation:isolate}
+.dossier-portrait>img{object-fit:cover;object-position:center;width:100%;height:100%;position:absolute;inset:0}
+.dossier-portrait:after{content:'';position:absolute;inset:0;border:18px solid transparent;border-image:url('assets/dossier/frames/portrait_frame.svg') 52 / 18px / 0 stretch;z-index:2;pointer-events:none}
+.dossier-portrait:after{filter:drop-shadow(0 0 3px #ff2d51aa)}
+.character-sheet .dossier-portrait>button{right:12px;bottom:14px;z-index:3;background:#15151fe8;border-color:#8c4558;border-radius:3px}
+.dossier-identity{margin-top:18px}
+.dossier-identity h2{font-size:clamp(32px,2.8vw,48px);letter-spacing:-.025em;line-height:1.1;margin-bottom:7px}
+.dossier-real-name{font-size:19px;line-height:1.4;margin:0 0 18px}
+.dossier-age{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding-top:14px}
+.dossier-age>span{text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+.dossier-age>b{font-size:19px;text-align:right}
+.dossier-age{position:relative;isolation:isolate;border:0;padding:12px 15px;background:#101019}
+.dossier-age:before,.dossier-bio:before{content:'';position:absolute;inset:0;z-index:-1;border:12px solid transparent;border-image:url('assets/dossier/frames/hud_panel_base.svg') 52 / 12px / 0 stretch;pointer-events:none}
+.dossier-bio{margin:20px 18px 0;padding:0;border:0;border-radius:0;background:transparent}
+.dossier-bio{position:relative;isolation:isolate;padding:0 12px;background:#111019}
+.dossier-bio>summary{font-size:18px;min-height:44px;padding:7px 0}
+.character-sheet .metrics.dossier-metrics{gap:12px;margin-bottom:16px}
+.dossier-layout .dossier-metric{--hud-frame:url('assets/dossier/frames/hud_panel_stat.svg');padding:20px 18px 17px;min-height:174px}
+.dossier-metric h2{font-size:15px;gap:8px;margin-bottom:10px;color:#d6c6cf;line-height:1.25;min-height:26px;padding-right:8px}
+.dossier-metric h2>.dossier-ui-icon{width:20px;height:20px}
+.dossier-metric-number,.dossier-experience #experience-value{font-size:40px;line-height:1.1}
+.dossier-metric-number small{font-size:21px}
+.dossier-metric p{font-size:13px;margin-top:9px}
+.dossier-meter{height:9px;margin-top:14px}
+.dossier-resource-cell>i{height:9px;border-radius:2px}
+.character-sheet .dossier-experience #spend-experience{font-size:13px;min-height:32px;margin-top:9px;border-color:#70303e;background:#25232c}
+.character-sheet .dossier-experience #spend-experience:not(:disabled){border-color:#ff2d51;background:linear-gradient(#541728,#23111c);box-shadow:inset 0 0 10px #ff2d5133,0 0 7px #ff2d5144;color:#fff9fb}
+.dossier-xp-hint{font-size:11px;line-height:1.35;margin-top:6px}
+.dossier-armor-select{margin-top:6px}
+.dossier-armor-select select{font-size:13px;background:#11121be8;border-color:#69313e}
+.dossier-details-grid,.dossier-loadout-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start;margin-bottom:16px}
+.dossier-loadout-grid{margin-bottom:0}
+.dossier-module>summary{padding:19px 20px 17px;gap:10px;min-height:68px;position:relative}
+.dossier-module>summary>span{font-size:clamp(21px,1.8vw,28px);line-height:1.15}
+.dossier-module>summary>small{font-size:12px}
+.dossier-module[open]>summary{border:0}
+.dossier-module>summary:before{content:'';position:absolute;inset:auto 20px 3px;height:3px;background:url('assets/dossier/decor/section_heading_underline.svg') center/100% 100% no-repeat;pointer-events:none;opacity:.5}
+.dossier-module-body{padding:0 20px 22px;min-width:0}
+.dossier-details-grid{align-items:stretch}
+.dossier-details-grid>.dossier-module[open]{height:100%}
+.dossier-section-tools{min-height:42px;padding:2px 0;border-color:#40323e}
+.dossier-master-tools{min-height:0}
+.dossier-stat-row{grid-template-columns:18px minmax(0,1fr) auto;gap:8px;min-height:60px;padding:16px 0;align-items:start;border-color:#3b303e}
+.dossier-info>summary{font-size:18px;line-height:26px}
+.dossier-row-index{font-size:12px;padding-top:4px}
+.dossier-values{grid-template-columns:24px 28px 35px;gap:3px;font-size:22px;line-height:26px}
+.dossier-effective{font-size:26px}
+.dossier-bonus{font-size:17px}
+.dossier-zero{font-size:15px}
+.dossier-info p,.dossier-sources{font-size:13px;line-height:1.6}
+.dossier-skill-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;min-height:54px;padding:13px 0;align-items:start;border-color:#3b303e}
+.dossier-skill-row .dossier-info>summary{font-size:17px;line-height:26px}
+.dossier-rank{display:grid;grid-template-columns:repeat(6,18px);gap:3px;align-items:center;padding-top:9px;grid-row:auto;grid-column:auto}
+.dossier-rank .dossier-slot{display:block;width:18px;height:11px;border:0;background:transparent center/100% 100% no-repeat;box-shadow:none}
+.dossier-rank .dossier-slot-base{background-image:url('assets/dossier/skills/skill_slot_base.svg')}
+.dossier-rank .dossier-slot-bonus{background-image:url('assets/dossier/skills/skill_slot_bonus.svg')}
+.dossier-rank .dossier-slot-empty{background-image:url('assets/dossier/skills/skill_slot_empty.svg')}
+.dossier-skill-result{display:flex;gap:5px;align-items:center;justify-content:flex-end;min-width:32px}
+.dossier-skill-result>.dossier-effective{display:grid;place-items:center;min-width:32px;min-height:29px;font-size:23px;background:url('assets/dossier/skills/skill_total_chip.svg') center/100% 100% no-repeat;padding:0 5px}
+.dossier-skill-result select{width:42px;min-height:32px;padding:3px;font-size:15px}
+.dossier-editor-hint,.dossier-budget{font-size:12px;line-height:1.4;margin:15px 0 0;color:var(--wd-text-secondary)}
+.dossier-layout .dossier-weapon-preview,.dossier-layout .dossier-perk{--hud-frame:url('assets/dossier/frames/hud_panel_item.svg');padding:16px;margin-top:12px}
+.dossier-weapon-preview{grid-template-columns:76px minmax(0,1fr);gap:0 14px}
+.dossier-item-icon,.dossier-icon-placeholder{width:76px;height:76px;border-color:#873344}
+.dossier-weapon-preview h3,.dossier-perk h3{font-size:19px;line-height:1.3}
+.dossier-item-status{font-size:11px;line-height:1.3}
+.dossier-weapon-stats{gap:5px 10px;margin:10px 0 4px}
+.dossier-weapon-stats>div{padding:0;border:0;background:transparent;font-size:14px;gap:5px}
+.dossier-item-rules{margin-top:12px}
+.dossier-item-rules>summary{font-size:13px;min-height:30px;line-height:1.5}
+.dossier-item-rules p,.dossier-perk>p{font-size:14px;line-height:1.6}
+.dossier-layout .dossier-empty{--hud-frame:url('assets/dossier/frames/hud_panel_empty.svg');margin-top:12px;padding:28px 16px;text-align:center;font-size:15px;line-height:1.5}
+/* Emergency layers remain above the HUD, below controls, with their existing timing. */
+.dossier-layout .cyber-frame,.dossier-layout .cyber-portrait-layer{z-index:2}
+.dossier-layout .dossier-chrome .cyber-metric-status{position:relative;z-index:3}
+.dossier-layout .cyber-title{font-size:clamp(15px,1.3vw,20px)}
+@media(min-width:900px) and (max-width:1200px){
+ .character-sheet .dossier-layout{grid-template-columns:minmax(0,28%) minmax(0,1fr);gap:12px}
+ .dossier-person{padding:6px 14px 0}.dossier-file-label{margin:0 14px}.dossier-bio{margin-left:14px;margin-right:14px}
+ .dossier-layout .dossier-metric{padding:18px 12px 15px}.dossier-metric h2{font-size:13px;gap:5px}.dossier-metric h2>.dossier-ui-icon{width:18px;height:18px}
+ .dossier-module>summary{padding:17px 14px}.dossier-module-body{padding:0 14px 18px}.dossier-module>summary>span{font-size:21px}
+ .dossier-info>summary,.dossier-skill-row .dossier-info>summary{font-size:15px}.dossier-stat-row{grid-template-columns:13px minmax(0,1fr) auto;gap:5px}
+ .dossier-values{grid-template-columns:18px 23px 29px;font-size:19px}.dossier-effective{font-size:23px}
+ .dossier-rank{grid-template-columns:repeat(6,13px);gap:2px}.dossier-rank .dossier-slot{width:13px;height:9px}.dossier-skill-row{gap:6px}
+ .dossier-details-grid,.dossier-loadout-grid{gap:12px}
+}
+@media(max-width:899px){
+ .character-sheet .sheet-header{background-image:linear-gradient(90deg,rgba(8,9,15,.88),rgba(8,9,15,.45)),url('assets/dossier/backgrounds/city_header_mobile.webp')}
+ .character-sheet .dossier-layout{grid-template-columns:minmax(0,1fr);gap:16px}
+ .dossier-layout .dossier-sidebar{padding-bottom:36px}.dossier-person{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:20px;padding:8px 20px 0;align-items:center}
+ .dossier-portrait{width:100%;height:auto;max-height:none;aspect-ratio:3/4}.dossier-identity{margin:0}.dossier-identity h2{font-size:32px}.dossier-age{grid-template-columns:1fr;gap:3px}.dossier-age>b{text-align:left}
+ .dossier-bio{margin:16px 20px 0;padding:0}.dossier-sidebar:after{height:16px;bottom:12px}
+ .character-sheet .metrics.dossier-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
+ .dossier-layout .dossier-metric{min-height:176px;padding:20px 18px 16px}
+ .dossier-details-grid,.dossier-loadout-grid{grid-template-columns:minmax(0,1fr);gap:14px;margin-bottom:14px;align-items:start}
+ .dossier-details-grid>.dossier-module[open]{height:auto}
+ .dossier-module>summary{padding:18px 20px;min-height:64px}.dossier-module>summary>span{font-size:23px}
+ .dossier-module-body{padding:0 20px 20px}.dossier-stat-row{min-height:58px}.dossier-info>summary{font-size:18px}
+ .dossier-skill-row .dossier-info>summary{font-size:17px}.dossier-rank{grid-template-columns:repeat(6,18px)}.dossier-rank .dossier-slot{width:18px;height:11px}
+ .dossier-skill-filters{padding:2px 0}.character-sheet .dossier-skill-filters button{min-height:40px}
+ .dossier-resource-adjust:not([open]){top:4px;right:4px}.dossier-metric h2{padding-right:12px}
+}
+@media(max-width:480px){
+ .character-sheet.is-dossier .sheet-main{padding-top:10px}.character-sheet.is-dossier .sheet-section-title{font-size:34px}
+ .character-sheet.is-dossier .sheet-section-title:after{width:64px;height:18px;margin-left:12px}
+ .dossier-file-label{min-height:54px;margin:0 14px}.dossier-file-label h2{font-size:23px}
+ .dossier-person{padding:4px 14px 0;gap:14px}.dossier-identity h2{font-size:28px}.dossier-real-name{font-size:16px;margin-bottom:12px}.dossier-age>span{font-size:11px}.dossier-age>b{font-size:16px}
+ .dossier-bio{margin:12px 14px 0}.dossier-bio>summary{font-size:17px;gap:8px}
+ .dossier-layout .dossier-metric{padding:18px 13px 15px;min-height:179px}.dossier-metric h2{font-size:14px;gap:5px;min-height:32px}.dossier-metric h2>.dossier-ui-icon{width:18px;height:18px}
+ .dossier-metric-number,.dossier-experience #experience-value{font-size:36px}.dossier-metric-number small{font-size:19px}.dossier-metric p{font-size:12px}.dossier-xp-hint{font-size:11px}
+ .dossier-module>summary{padding:17px 16px;gap:8px}.dossier-module>summary>span{font-size:22px}.dossier-module-body{padding:0 16px 18px}
+ .dossier-info>summary{font-size:16px}.dossier-values{grid-template-columns:23px 25px 32px;font-size:21px}.dossier-effective{font-size:24px}.dossier-stat-row{gap:6px;grid-template-columns:13px minmax(0,1fr) auto}
+ .dossier-skill-row{gap:7px}.dossier-skill-row .dossier-info>summary{font-size:16px}.dossier-rank{grid-template-columns:repeat(6,14px);gap:2px}.dossier-rank .dossier-slot{width:14px;height:10px}.dossier-skill-result{min-width:29px}.dossier-skill-result>.dossier-effective{min-width:29px;font-size:21px}
+ .dossier-skill-row:has(select){grid-template-columns:minmax(0,1fr) auto}.dossier-skill-row:has(select) .dossier-rank{grid-row:2;grid-column:1;padding-top:0}.dossier-skill-row:has(select) .dossier-skill-result{grid-row:1/3;grid-column:2}
+ .dossier-weapon-preview{grid-template-columns:58px minmax(0,1fr);gap:0 10px}.dossier-item-icon,.dossier-icon-placeholder{width:58px;height:58px}.dossier-weapon-preview h3{font-size:17px}
+}

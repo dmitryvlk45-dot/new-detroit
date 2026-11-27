@@ -1,0 +1,105 @@
+{
+  "files": [
+    {
+      "path": "assets/dossier/backgrounds/city_header_desktop.webp",
+      "bytes": 102506,
+      "sha256": "ea6c38133578f3ced3529e9c77395c5de0199a84afe1ceed7b285d560bec6d56"
+    },
+    {
+      "path": "assets/dossier/backgrounds/city_header_mobile.webp",
+      "bytes": 59258,
+      "sha256": "890450850934cee7b204e80ecc70b2395ff56769e0b8b3ebc6a87eb5ce4f3d11"
+    },
+    {
+      "path": "assets/dossier/backgrounds/page_tech_grid_overlay.png",
+      "bytes": 14073,
+      "sha256": "46bfac3a67d646e920c76aae247cb1b761a24efcccdf1d339ce0beb8db60fdfc"
+    },
+    {
+      "path": "assets/dossier/backgrounds/panel_microtexture_tile.png",
+      "bytes": 9509,
+      "sha256": "a3597f2e839a29db6127b1c58bbdad7f940caed0d237ce532029d2a5f9d47e94"
+    },
+    {
+      "path": "assets/dossier/decor/header_hud_trim.svg",
+      "bytes": 928,
+      "sha256": "596f21b5cf8f339ddc4cd2be2a7a369158ba0dcd1e90587792aa82e848fe2253"
+    },
+    {
+      "path": "assets/dossier/decor/profile_cityline.svg",
+      "bytes": 4184,
+      "sha256": "f91be1c592b11e6bd95a74c3b09b3075af0fba8651e553fb010ea9afa41e20c9"
+    },
+    {
+      "path": "assets/dossier/decor/section_heading_underline.svg",
+      "bytes": 617,
+      "sha256": "4a60dfed6a7fcc43a642f63ca1d5681b78968bef04d06f1dd6d67f74368571e2"
+    },
+    {
+      "path": "assets/dossier/decor/slash_accent.svg",
+      "bytes": 327,
+      "sha256": "a3a2c5421bb46ec88871b81181ca1aed3e0dcf9776bad4432944be88e37f3bc6"
+    },
+    {
+      "path": "assets/dossier/frames/hud_panel_base.svg",
+      "bytes": 1420,
+      "sha256": "69eb38aab7ee1684ff6ce3d054baf78a5e45d395f7b6c994c4e3ed6b1dbb6e53"
+    },
+    {
+      "path": "assets/dossier/frames/hud_panel_empty.svg",
+      "bytes": 1478,
+      "sha256": "a78a519e8e5448f74ac448b128d1f45fba2e401899488aabfa600da64196ee24"
+    },
+    {
+      "path": "assets/dossier/frames/hud_panel_item.svg",
+      "bytes": 1242,
+      "sha256": "db7597493bca965a9f3992c93303b37f411989bd0486a75fcb38da74ecfebffa"
+    },
+    {
+      "path": "assets/dossier/frames/hud_panel_profile.svg",
+      "bytes": 1750,
+      "sha256": "7db47bdcae899cdf535a883ffbe11adb2f85a9ace68f24a5253e236e983db1a5"
+    },
+    {
+      "path": "assets/dossier/frames/hud_panel_section.svg",
+      "bytes": 1694,
+      "sha256": "b73808fea0324e0c8ef2a2848353b47768a32f50397e7577eb423010052c7c41"
+    },
+    {
+      "path": "assets/dossier/frames/hud_panel_stat.svg",
+      "bytes": 1514,
+      "sha256": "41692846299af6f8a4c51ca15f4120fab0163c51a111a63d367618f98ee415c0"
+    },
+    {
+      "path": "assets/dossier/frames/portrait_frame.svg",
+      "bytes": 1241,
+      "sha256": "64bab677edd64aa80ba7909d09ba1aa649a0e7a6ebb3d74a6149dcbbbc7c8f39"
+    },
+    {
+      "path": "assets/dossier/skills/skill_row_divider.svg",
+      "bytes": 243,
+      "sha256": "b1042febc0c1ff0980c434623cd9c7558ce50ac7ddb7df8b5b9d9922b5ed2c82"
+    },
+    {
+      "path": "assets/dossier/skills/skill_slot_base.svg",
+      "bytes": 681,
+      "sha256": "113593c951f1c11140622db8f81d7cd5ca10389bbedb4c09484bb024f4e3d07b"
+    },
+    {
+      "path": "assets/dossier/skills/skill_slot_bonus.svg",
+      "bytes": 682,
+      "sha256": "d71a15efe08757f1b909f1b823e67cd861f07a4c4dbb94b3b14ac48f3c4b162a"
+    },
+    {
+      "path": "assets/dossier/skills/skill_slot_empty.svg",
+      "bytes": 601,
+      "sha256": "2597df280b5b5991dbc156e41071d5bcdc86083d955a550e512221819b4bf928"
+    },
+    {
+      "path": "assets/dossier/skills/skill_total_chip.svg",
+      "bytes": 420,
+      "sha256": "6952e6acb3d2b2083fe59360e2f0690e55673c23f8c64879960b764b98d23568"
+    }
+  ],
+  "assetRoot": "Карточка персонажа/v3/Wicked_Detroit_Character_Dossier_Refresh_Kit"
+}
