@@ -15,8 +15,8 @@ const area=(label,path,value)=>`<label class="field"><span>${label}</span><texta
 function selector(path,selected,options,label){return `<select aria-label="${esc(label)}" data-path="${path}">${options.map(x=>`<option value="${esc(x)}" ${x===selected?'selected':''}>${esc(x===''?'Не выбрано':Object.values(D.catalog).flat().find(i=>i.name===x)?.displayName||x)}</option>`).join('')}</select>`;}
 function section(title,body,meta=''){return `<section class="panel"><header class="panel-head"><h2>${title}</h2><span>${meta}</span></header>${body}</section>`;}
 function pips(kind,n,current){return `<div class="pips">${Array.from({length:n},(_,i)=>`<button class="pip ${i<current?'filled':''}" data-pip="${kind}" data-value="${i<current?current-1:i+1}" aria-label="${kind==='hp'?'Здоровье':'Броня'}: ${i+1}" aria-pressed="${i<current}"></button>`).join('')}</div>`;}
-function updateExperienceControls(){const button=$('#spend-experience');if(button)button.disabled=!canEdit||!E.canSpendExperience(card);const hint=$('#experience-hint');if(hint)hint.textContent=E.canSpendExperience(card)?'Доступно меню развития':'Для развития нужно минимум 3 очка';}
-function experienceMenu(){if(!canEdit||!E.canSpendExperience(card))return;modal('Развитие персонажа',`<div class="experience-balance"><span>Доступные очки опыта</span><strong>${card.experience}</strong></div><p>Варианты развития появятся здесь позже.</p><p class="hint">Опыт не списан.</p><button id="close-experience" class="yellow">Вернуться к карточке</button>`);$('#close-experience').onclick=closeModal;}
+function updateExperienceControls(){const button=$('#spend-experience');if(button)button.disabled=!canEdit||!E.canSpendExperience(card);const hint=$('#experience-hint');if(hint)hint.textContent=E.canSpendExperience(card)?'Доступно меню развития':'Для развития необходимо минимум 3 ОО';}
+function experienceMenu(){return window.ND_PROGRESSION?.open();}
 function loadout(kind,count){if(window.ND_SHEET_V2)return window.ND_SHEET_V2.equipment(kind);const arr=kind==='armor'?[card.armor]:card[kind];return arr.slice(0,count??arr.length).map((item,i)=>{
  const name=typeof item==='object'?item.name:item;const entry=D.catalog[kind].find(x=>x.name===name);
  const path=kind==='armor'?'armor':`${kind}.${i}${typeof item==='object'?'.name':''}`;
@@ -59,7 +59,7 @@ function bind(){if(tab==='city-map')window.ND_CITY_MAP?.bind();window.ND_JOURNAL
  if($('#search'))$('#search').oninput=e=>{search=e.target.value;$('#results').innerHTML=referenceResults();};
  if($('#category'))$('#category').onchange=e=>{category=e.target.value;$('#results').innerHTML=referenceResults();};
 }
-function modal(title,html){$('#dialog').classList.remove('network-dialog','journal-dialog');$('#dialog').oncancel=null;$('#dialog').innerHTML=`<div class="dialog-heading"><h2>${esc(title)}</h2><button id="close-modal" aria-label="Закрыть">×</button></div>${html}<p id="dialog-error" role="alert"></p>`;$('#close-modal').onclick=closeModal;if(!$('#dialog').open)$('#dialog').showModal();}
+function modal(title,html){$('#dialog').classList.remove('network-dialog','journal-dialog','progression-dialog');$('#dialog').oncancel=null;$('#dialog').innerHTML=`<div class="dialog-heading"><h2>${esc(title)}</h2><button id="close-modal" aria-label="Закрыть">×</button></div>${html}<p id="dialog-error" role="alert"></p>`;$('#close-modal').onclick=closeModal;if(!$('#dialog').open)$('#dialog').showModal();}
 function closeModal(){$('#dialog').close();}
 function error(e){if($('#dialog-error'))$('#dialog-error').textContent=e.message;else notify(e.message);}
 function cloudMenu(){

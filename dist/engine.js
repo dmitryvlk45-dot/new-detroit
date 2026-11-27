@@ -5,11 +5,11 @@
  const V=root.ND_CATALOG_V2||(typeof require==='function'?require('./catalog-v2.js'):null);
  function derive(c,catalog){
   const stats=V.calculateCharacterStats(c,catalog),{maxHP,armor,currentArmor}=stats,{used,capacity}=stats.chrome;
-  return {maxHP,armor,currentArmor,used,capacity,freeChrome:capacity-used,psychosis:Math.max(0,used-capacity),skillPoints:4+c.attributes[2]-c.skills.reduce((a,b)=>a+b,0),validAttributes:c.attributes.slice().sort().join() === '0,1,1,2',stats};
+  return {maxHP,armor,currentArmor,used,capacity,freeChrome:capacity-used,psychosis:Math.max(0,used-capacity),skillPoints:4+c.attributes[2]-c.skills.reduce((a,b)=>a+b,0)+(c.developmentSkillOffset||0),validAttributes:c.attributes.slice().sort().join() === '0,1,1,2',stats};
  }
  function validate(c,data){
   if(!c||typeof c!=='object')throw Error('Некорректная карточка');
-  for(const [k,len,max] of [['attributes',4,2],['skills',12,3]])if(!Array.isArray(c[k])||c[k].length!==len||c[k].some(x=>!Number.isInteger(x)||x<0||x>max))throw Error('Некорректные характеристики или навыки');
+  for(const [k,len,max] of [['attributes',4,Number.MAX_SAFE_INTEGER],['skills',12,3]])if(!Array.isArray(c[k])||c[k].length!==len||c[k].some(x=>!Number.isSafeInteger(x)||x<0||x>max))throw Error('Некорректные характеристики или навыки');
   for(const k of ['name','nickname','age','bio'])if(typeof c[k]!=='string'||c[k].length>20000)throw Error('Некорректное поле '+k);
   for(const k of ['hp','armorSpent','money'])if(!Number.isFinite(c[k])||c[k]<0)throw Error('Некорректное число '+k);
   if(!Number.isInteger(c.hp)||!Number.isInteger(c.armorSpent))throw Error('Некорректное здоровье');
@@ -28,6 +28,7 @@
   const result=clone(data.initial);for(const k of Object.keys(result))result[k]=clone(c[k]);
   result.notes=J.normalize(c.notes);
   result.experience=c.experience??0;
+  if(c.developmentSkillOffset!==undefined){if(!Number.isSafeInteger(c.developmentSkillOffset))throw Error('Некорректная поправка стартового бюджета');result.developmentSkillOffset=c.developmentSkillOffset;}
   if(c.resourceAdjustments!==undefined)result.resourceAdjustments=clone(c.resourceAdjustments);
   if(c.photo!==undefined)result.photo=c.photo;
   if(c.equipmentVersion!==undefined){result.equipmentVersion=c.equipmentVersion;result.equipmentItems=V.validateInstances(c.equipmentItems);result.hp=Math.min(result.hp,maximum);}

@@ -1,0 +1,146 @@
+[
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_54-10.png",
+    "target": "skills/intuition.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_46-4.png",
+    "target": "skills/piloting.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_49-6.png",
+    "target": "skills/engineering.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки характеристик/Нейропластичность.png",
+    "target": "attributes/neuroplasticity.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_52-8.png",
+    "target": "skills/communication.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "perk.png",
+    "target": "common/perk.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_50-7.png",
+    "target": "skills/deduction.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "upgrade_card_tech.png",
+    "target": "backgrounds/card-tech.jpg",
+    "width": 427,
+    "height": 200
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_29_22-2.png",
+    "target": "skills/fortitude.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки характеристик/Тело.png",
+    "target": "attributes/body.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки характеристик/Харизма.png",
+    "target": "attributes/charisma.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "upgrade_modal_desktop.png",
+    "target": "backgrounds/modal-desktop.jpg",
+    "width": 1088,
+    "height": 706
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_43-2.png",
+    "target": "skills/shooting.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_53-9.png",
+    "target": "skills/intimidation.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "upgrade_header_city.png",
+    "target": "backgrounds/header.jpg",
+    "width": 451,
+    "height": 119
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_47-5.png",
+    "target": "skills/hacking.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_45-3.png",
+    "target": "skills/stealth.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_29_21-1.png",
+    "target": "skills/brawling.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "upgrade_icon_slot.png",
+    "target": "backgrounds/icon-slot.png",
+    "width": 170,
+    "height": 167
+  },
+  {
+    "source": "upgrade_card_basic.png",
+    "target": "backgrounds/card-basic.jpg",
+    "width": 416,
+    "height": 200
+  },
+  {
+    "source": "Иконки характеристик/Реакция.png",
+    "target": "attributes/reflexes.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "experience.png",
+    "target": "common/experience.png",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "source": "upgrade_modal_mobile.png",
+    "target": "backgrounds/modal-mobile.jpg",
+    "width": 396,
+    "height": 707
+  },
+  {
+    "source": "Иконки навыков/Изображение ChatGPT 27 нояб. 2026 г., 08_26_42-1.png",
+    "target": "skills/athletics.png",
+    "width": 128,
+    "height": 128
+  }
+]
