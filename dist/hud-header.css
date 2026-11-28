@@ -21,8 +21,9 @@
 .character-sheet .character-hud-header .sheet-tabs{display:flex;align-items:center;gap:10px;flex:0 0 auto;width:auto;max-width:100%;height:60px;min-height:60px;margin:0;padding:0;overflow:visible;border:0}
 .character-sheet .character-hud-header .sheet-tabs button{display:grid;place-items:center;flex:0 0 64px;width:64px;height:52px;min-height:44px;margin:0;padding:12px;border:1px solid transparent;border-radius:0;background:transparent;color:var(--wd-text-primary);clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)}
 .character-hud-header .sheet-tabs button .dossier-ui-icon{width:28px;height:28px}
-.character-sheet .character-hud-header .sheet-tabs button.active{position:relative;background:#ff3154;border-color:#ff3154;box-shadow:none;color:#fff;filter:drop-shadow(0 0 5px #ff143f88)}
-.character-hud-header .sheet-tabs button.active:before{content:'';position:absolute;inset:1px;z-index:0;background:linear-gradient(#501022,#170b12);clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px);pointer-events:none}
+.character-sheet .character-hud-header .sheet-tabs button.active{position:relative;background:transparent;border-color:transparent;box-shadow:none;color:#fff;filter:drop-shadow(0 0 5px #ff143f88)}
+.character-hud-header .sheet-tabs button.active:before{content:'';position:absolute;inset:7px 0;z-index:0;background:#ff3154;clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px);pointer-events:none}
+.character-hud-header .sheet-tabs button.active:after{content:'';position:absolute;inset:8px 1px;z-index:0;background:linear-gradient(#501022,#170b12);clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px);pointer-events:none}
 .character-hud-header .sheet-tabs button.active .dossier-ui-icon{position:relative;z-index:1}
 .character-sheet .character-hud-header .sheet-tabs button.active .dossier-ui-icon{filter:drop-shadow(0 0 3px #ff335b)}
 .character-sheet .character-hud-header .sheet-tabs button:hover{background-color:#43131d77;border-color:#d23c59}
